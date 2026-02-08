@@ -259,15 +259,13 @@ export function AuditResults({ audit }: AuditResultsProps) {
   };
 
   return (
-    <div className="min-h-[100dvh] bg-background">
+    <div className="min-h-[100dvh] bg-ivory">
       {/* Header */}
       <header className="flex items-center justify-between px-5 py-4 md:px-8 md:py-5 border-b border-border">
-        <Link href="/" className="flex items-center gap-2">
-          <Logo size="md" />
-        </Link>
+        <Logo size="md" linkToHome />
         <button
           onClick={handleShare}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl font-medium text-sm hover:bg-primary-dark transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-forest text-white rounded-lg font-medium text-sm hover:bg-forest-light transition-colors"
         >
           {copied ? (
             <>
@@ -354,13 +352,13 @@ export function AuditResults({ audit }: AuditResultsProps) {
               <div className="mt-6 flex items-center gap-4">
                 <Link
                   href="/pricing"
-                  className="inline-flex items-center justify-center px-5 py-2.5 bg-primary text-white font-semibold rounded-xl hover:bg-primary-dark transition-colors"
+                  className="inline-flex items-center justify-center px-5 py-2.5 bg-forest text-white font-semibold rounded-lg hover:bg-forest-light transition-colors"
                 >
                   Improve This Score
                 </Link>
                 <button
                   onClick={handleShare}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 text-text-muted hover:text-foreground font-medium rounded-xl hover:bg-surface-secondary transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 text-walnut-light hover:text-walnut font-medium rounded-lg hover:bg-cream transition-colors"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
@@ -452,8 +450,8 @@ export function AuditResults({ audit }: AuditResultsProps) {
         </section>
 
         {/* CTA Section */}
-        <section className="bg-primary text-white rounded-3xl p-8 md:p-12 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+        <section className="bg-forest text-white rounded-2xl p-8 md:p-12 text-center">
+          <h2 className="font-display text-2xl md:text-3xl mb-4">
             Want to improve this score?
           </h2>
           <p className="text-white/80 mb-8 max-w-lg mx-auto">
@@ -464,13 +462,13 @@ export function AuditResults({ audit }: AuditResultsProps) {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/pricing"
-              className="inline-flex items-center justify-center px-6 py-3 bg-white text-primary font-semibold rounded-xl hover:bg-white/90 transition-colors w-full sm:w-auto"
+              className="inline-flex items-center justify-center px-6 py-3 bg-white text-forest font-semibold rounded-lg hover:bg-ivory transition-colors w-full sm:w-auto"
             >
               Start Free Trial — $29/month
             </Link>
             <a
               href="#fix-it-for-me"
-              className="inline-flex items-center justify-center px-6 py-3 border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors w-full sm:w-auto"
+              className="inline-flex items-center justify-center px-6 py-3 border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors w-full sm:w-auto"
             >
               Get it fixed for me — $499
             </a>
@@ -479,10 +477,10 @@ export function AuditResults({ audit }: AuditResultsProps) {
 
         {/* Check Another Business */}
         <section className="mt-12 text-center">
-          <p className="text-text-muted mb-4">Want to check another business?</p>
+          <p className="text-walnut-light mb-4">Want to check another business?</p>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-primary font-medium hover:text-primary-dark transition-colors"
+            className="inline-flex items-center gap-2 text-forest font-medium hover:text-forest-light transition-colors"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -497,18 +495,18 @@ export function AuditResults({ audit }: AuditResultsProps) {
         <div className="max-w-4xl xl:max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2">
             <Logo size="sm" showWordmark={false} />
-            <span className="text-sm text-text-muted">
+            <span className="text-sm text-walnut-light">
               © 2025 Curb Appeal. All rights reserved.
             </span>
           </div>
-          <nav className="flex items-center gap-6 text-sm text-text-muted">
-            <Link href="/pricing" className="hover:text-foreground transition-colors">
+          <nav className="flex items-center gap-6 text-sm text-walnut-light">
+            <Link href="/pricing" className="hover:text-forest transition-colors">
               Pricing
             </Link>
-            <Link href="/privacy" className="hover:text-foreground transition-colors">
+            <Link href="/privacy" className="hover:text-forest transition-colors">
               Privacy
             </Link>
-            <Link href="/terms" className="hover:text-foreground transition-colors">
+            <Link href="/terms" className="hover:text-forest transition-colors">
               Terms
             </Link>
           </nav>
@@ -516,10 +514,10 @@ export function AuditResults({ audit }: AuditResultsProps) {
       </footer>
 
       {/* Sticky Mobile CTA */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-surface border-t border-border md:hidden safe-area-bottom">
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-ivory border-t border-border md:hidden safe-area-bottom">
         <Link
           href="/pricing"
-          className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-primary text-white font-semibold rounded-xl hover:bg-primary-dark transition-colors min-h-[52px]"
+          className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-forest text-white font-semibold rounded-lg hover:bg-forest-light transition-colors min-h-[52px]"
         >
           Improve This Score
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -2,16 +2,15 @@
 
 import Link from "next/link";
 import { BusinessSearch } from "@/components/BusinessSearch";
+import { Logo } from "@/components/Logo";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-ivory flex flex-col">
-      {/* Header - full width with constrained content */}
+      {/* Header - full width */}
       <header className="w-full border-b border-border/50">
-        <div className="max-w-3xl lg:max-w-4xl mx-auto px-5 md:px-8 py-4 flex items-center justify-between">
-          <div className="font-display text-xl text-walnut">
-            Curb Appeal
-          </div>
+        <div className="max-w-5xl mx-auto px-5 md:px-8 py-4 flex items-center justify-between">
+          <Logo size="md" />
           <nav className="flex items-center gap-4">
             <Link
               href="/pricing"
@@ -29,9 +28,9 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Hero - fills viewport on mobile */}
+      {/* Hero */}
       <main className="flex-1 flex flex-col justify-center px-5 md:px-8 py-10 md:py-16 min-h-[calc(100svh-200px)] md:min-h-0">
-        <div className="max-w-3xl lg:max-w-4xl mx-auto w-full">
+        <div className="max-w-5xl mx-auto w-full">
           {/* Section Label */}
           <div className="text-xs font-medium uppercase tracking-wider text-brass mb-4 md:mb-6">
             Free Google Business Audit
@@ -76,14 +75,14 @@ export default function Home() {
         </div>
       </main>
 
-      {/* How it works - horizontal on desktop */}
+      {/* How it works */}
       <section className="bg-cream border-t border-border">
-        <div className="max-w-3xl lg:max-w-4xl mx-auto px-5 md:px-8 py-12 md:py-16">
+        <div className="max-w-5xl mx-auto px-5 md:px-8 py-12 md:py-16">
           <div className="text-xs font-medium uppercase tracking-wider text-brass mb-6 md:mb-8">
             How it works
           </div>
 
-          {/* 3-column grid on desktop, stacked on mobile */}
+          {/* 3-column grid on desktop */}
           <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             <div className="flex md:flex-col gap-4">
               <div className="w-8 h-8 rounded-full bg-forest text-white flex items-center justify-center text-sm font-medium shrink-0">
@@ -126,7 +125,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-border">
-        <div className="max-w-3xl lg:max-w-4xl mx-auto px-5 md:px-8 py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div className="max-w-5xl mx-auto px-5 md:px-8 py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div className="text-sm text-walnut-light">
             © 2025 Curb Appeal
           </div>
