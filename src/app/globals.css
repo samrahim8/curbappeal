@@ -88,8 +88,25 @@ body::before {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display), Georgia, serif;
   font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+/* Editorial italic accent */
+.italic, em, i {
+  font-style: italic;
+}
+
+/* Blockquote styling */
+blockquote {
+  font-family: var(--font-display), Georgia, serif;
+  font-style: normal;
+}
+
+/* Selection styling */
+::selection {
+  background: var(--accent);
+  color: white;
 }
 
 /* Input zoom prevention on iOS */

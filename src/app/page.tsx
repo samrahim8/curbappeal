@@ -6,103 +6,113 @@ import { Logo } from "@/components/Logo";
 
 export default function Home() {
   return (
-    <div>
-      {/* Hero - Full viewport */}
-      <div className="min-h-[100dvh] flex flex-col">
+    <div className="overflow-x-hidden">
+      {/* Hero - Full viewport with editorial layout */}
+      <div className="min-h-[100dvh] flex flex-col relative">
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/[0.03] to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-px h-32 bg-gradient-to-t from-border to-transparent ml-6 md:ml-12 hidden md:block" />
+
         {/* Header */}
-        <header className="flex items-center justify-between px-6 py-4 md:px-8 md:py-5">
+        <header className="flex items-center justify-between px-6 py-5 md:px-12 md:py-6 relative z-10">
           <Logo size="sm" className="md:hidden" />
           <Logo size="md" className="hidden md:flex" />
-          <nav className="flex items-center gap-4 text-sm">
+          <nav className="flex items-center gap-6 text-sm">
             <Link
               href="/pricing"
-              className="text-text-muted hover:text-foreground transition-colors hidden sm:block"
+              className="text-text-muted hover:text-foreground transition-colors hidden sm:block tracking-wide uppercase text-xs font-medium"
             >
               Pricing
             </Link>
             <Link
               href="/login"
-              className="text-text-muted hover:text-foreground transition-colors"
+              className="text-text-muted hover:text-foreground transition-colors tracking-wide uppercase text-xs font-medium"
             >
               Log in
             </Link>
           </nav>
         </header>
 
-        {/* Hero Content */}
-        <section className="flex-1 flex flex-col justify-center px-6 pb-12 md:px-8">
-          <div className="max-w-2xl mx-auto w-full text-center">
-            {/* Headline */}
-            <h1 className="text-[2.5rem] leading-[1.1] sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
-              Most businesses score below 50. <span className="text-accent">Where do you land?</span>
-            </h1>
-
-            {/* Subheadline */}
-            <p className="text-lg md:text-xl text-text-muted mb-8">
-              Free Google Business Profile audit. 30 seconds. No signup.
+        {/* Hero Content - Editorial asymmetric layout */}
+        <section className="flex-1 flex flex-col justify-center px-6 pb-16 md:px-12 lg:px-20 relative z-10">
+          <div className="max-w-5xl w-full">
+            {/* Eyebrow */}
+            <p className="text-xs tracking-[0.2em] uppercase text-accent font-medium mb-6 md:mb-8">
+              Free Audit Tool
             </p>
 
-            {/* Search */}
-            <div className="md:flex md:justify-center">
-              <div className="relative w-full max-w-xl md:mx-auto">
-                <BusinessSearch size="large" placeholder="Enter your business name" />
-              </div>
+            {/* Headline - Large editorial typography */}
+            <h1 className="text-[2.75rem] leading-[1.05] sm:text-6xl md:text-7xl lg:text-8xl mb-8 md:mb-10 tracking-tight max-w-4xl">
+              Most businesses score below 50.{" "}
+              <span className="italic text-accent">Where do you land?</span>
+            </h1>
+
+            {/* Subheadline with accent line */}
+            <div className="flex items-start gap-4 mb-10 md:mb-12">
+              <div className="w-12 h-px bg-accent mt-3 hidden sm:block flex-shrink-0" />
+              <p className="text-lg md:text-xl text-text-muted max-w-md leading-relaxed">
+                Get your Google Business Profile score in 30 seconds. No signup required.
+              </p>
+            </div>
+
+            {/* Search - Left aligned on desktop */}
+            <div className="max-w-xl">
+              <BusinessSearch size="large" placeholder="Enter your business name" />
             </div>
           </div>
         </section>
+
+        {/* Bottom accent */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       </div>
 
       {/* Rest of page */}
       <main>
-        {/* How It Works */}
-        <section id="how-it-works" className="px-6 py-12 md:px-8 md:py-20 bg-surface-secondary">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-xl md:text-3xl font-bold mb-8 md:mb-12 md:text-center">
-              How it works
-            </h2>
+        {/* How It Works - Editorial numbered list */}
+        <section id="how-it-works" className="px-6 py-16 md:px-12 lg:px-20 md:py-24 bg-surface relative">
+          {/* Decorative top border */}
+          <div className="absolute top-0 left-6 right-6 md:left-12 md:right-12 h-px bg-border" />
 
-            {/* Mobile: Compact horizontal list / Desktop: 3 columns */}
-            <div className="space-y-6 md:space-y-0 md:grid md:grid-cols-3 md:gap-8">
+          <div className="max-w-5xl mx-auto">
+            {/* Section header - Editorial style */}
+            <div className="flex items-end gap-4 mb-12 md:mb-16">
+              <span className="text-6xl md:text-8xl font-display text-border leading-none">01</span>
+              <div>
+                <p className="text-xs tracking-[0.2em] uppercase text-text-muted mb-1">The Process</p>
+                <h2 className="text-2xl md:text-4xl tracking-tight">How it works</h2>
+              </div>
+            </div>
+
+            {/* Steps - Editorial numbered layout */}
+            <div className="grid md:grid-cols-3 gap-8 md:gap-12">
               {/* Step 1 */}
-              <div className="flex gap-4 md:block md:text-center">
-                <div className="flex-shrink-0 w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center md:mx-auto md:mb-4">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">1. Search your business</h3>
-                  <p className="text-sm text-text-muted leading-relaxed">
+              <div className="relative pl-8 md:pl-0">
+                <span className="absolute left-0 top-0 text-2xl font-display text-accent md:relative md:block md:text-4xl md:mb-4">1</span>
+                <div className="md:pl-0">
+                  <h3 className="text-lg font-medium mb-2 tracking-tight">Search your business</h3>
+                  <p className="text-text-muted leading-relaxed">
                     Type your business name and select it from the dropdown.
                   </p>
                 </div>
               </div>
 
               {/* Step 2 */}
-              <div className="flex gap-4 md:block md:text-center">
-                <div className="flex-shrink-0 w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center md:mx-auto md:mb-4">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">2. Get your score</h3>
-                  <p className="text-sm text-text-muted leading-relaxed">
+              <div className="relative pl-8 md:pl-0">
+                <span className="absolute left-0 top-0 text-2xl font-display text-accent md:relative md:block md:text-4xl md:mb-4">2</span>
+                <div className="md:pl-0">
+                  <h3 className="text-lg font-medium mb-2 tracking-tight">Get your score</h3>
+                  <p className="text-text-muted leading-relaxed">
                     See your profile score out of 100 instantly.
                   </p>
                 </div>
               </div>
 
               {/* Step 3 */}
-              <div className="flex gap-4 md:block md:text-center">
-                <div className="flex-shrink-0 w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center md:mx-auto md:mb-4">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1">3. See what to fix</h3>
-                  <p className="text-sm text-text-muted leading-relaxed">
+              <div className="relative pl-8 md:pl-0">
+                <span className="absolute left-0 top-0 text-2xl font-display text-accent md:relative md:block md:text-4xl md:mb-4">3</span>
+                <div className="md:pl-0">
+                  <h3 className="text-lg font-medium mb-2 tracking-tight">See what to fix</h3>
+                  <p className="text-text-muted leading-relaxed">
                     Get specific action items in plain English.
                   </p>
                 </div>
@@ -111,81 +121,68 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Social Proof Section */}
-        <section className="px-6 py-12 md:px-8 md:py-20">
-          <div className="max-w-4xl mx-auto">
-            <p className="text-xs font-semibold text-primary tracking-wide uppercase mb-2">Trusted by local businesses</p>
-            <h2 className="text-xl md:text-3xl font-bold mb-6 md:mb-10">
-              What business owners are saying
-            </h2>
+        {/* Social Proof Section - Editorial pull quote style */}
+        <section className="px-6 py-16 md:px-12 lg:px-20 md:py-24 bg-surface-secondary relative">
+          <div className="max-w-5xl mx-auto">
+            {/* Section header */}
+            <div className="flex items-end gap-4 mb-12 md:mb-16">
+              <span className="text-6xl md:text-8xl font-display text-border leading-none">02</span>
+              <div>
+                <p className="text-xs tracking-[0.2em] uppercase text-text-muted mb-1">Testimonials</p>
+                <h2 className="text-2xl md:text-4xl tracking-tight">What owners are saying</h2>
+              </div>
+            </div>
 
-            {/* Mobile: Horizontal scroll / Desktop: Grid */}
-            <div className="flex gap-4 overflow-x-auto pb-4 -mx-6 px-6 md:mx-0 md:px-0 md:overflow-visible md:grid md:grid-cols-3 md:gap-6 snap-x snap-mandatory">
-              {/* Testimonial 1 */}
-              <div className="flex-shrink-0 w-[280px] md:w-auto bg-surface border border-border rounded-2xl p-5 snap-start">
-                <div className="flex items-center gap-0.5 mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-3.5 h-3.5 text-score-warning" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-sm text-text-muted mb-3 leading-relaxed">
-                  &ldquo;Finally, someone explains Google in a way I can understand. Found out I was missing my hours — now I get weekend calls!&rdquo;
-                </p>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-semibold">
+            {/* Testimonials - Editorial card layout */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {/* Testimonial 1 - Featured/larger */}
+              <div className="md:col-span-2 lg:col-span-1 lg:row-span-2 bg-surface border border-border p-8 md:p-10 relative">
+                {/* Large quote mark */}
+                <span className="absolute top-6 right-6 text-6xl font-display text-border leading-none">&rdquo;</span>
+                <blockquote className="text-lg md:text-xl leading-relaxed mb-6 relative z-10">
+                  Finally, someone explains Google in a way I can understand. Found out I was missing my hours — now I get weekend calls!
+                </blockquote>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center text-accent font-display text-lg">
                     M
                   </div>
                   <div>
-                    <p className="font-medium text-sm">Mike R.</p>
-                    <p className="text-xs text-text-light">Plumber, Orlando</p>
+                    <p className="font-medium">Mike R.</p>
+                    <p className="text-sm text-text-muted">Plumber, Orlando</p>
                   </div>
                 </div>
               </div>
 
               {/* Testimonial 2 */}
-              <div className="flex-shrink-0 w-[280px] md:w-auto bg-surface border border-border rounded-2xl p-5 snap-start">
-                <div className="flex items-center gap-0.5 mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-3.5 h-3.5 text-score-warning" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-sm text-text-muted mb-3 leading-relaxed">
-                  &ldquo;My score was 42. Six weeks later it&apos;s 78. I just followed the action items. More calls than ever.&rdquo;
-                </p>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-semibold">
+              <div className="bg-surface border border-border p-6 md:p-8 relative">
+                <span className="absolute top-4 right-4 text-4xl font-display text-border leading-none">&rdquo;</span>
+                <blockquote className="text-base leading-relaxed mb-4 relative z-10">
+                  My score was 42. Six weeks later it&apos;s 78. I just followed the action items.
+                </blockquote>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-accent/10 rounded-full flex items-center justify-center text-accent font-display">
                     S
                   </div>
                   <div>
                     <p className="font-medium text-sm">Sarah T.</p>
-                    <p className="text-xs text-text-light">Salon Owner, Tampa</p>
+                    <p className="text-xs text-text-muted">Salon Owner, Tampa</p>
                   </div>
                 </div>
               </div>
 
               {/* Testimonial 3 */}
-              <div className="flex-shrink-0 w-[280px] md:w-auto bg-surface border border-border rounded-2xl p-5 snap-start">
-                <div className="flex items-center gap-0.5 mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-3.5 h-3.5 text-score-warning" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-sm text-text-muted mb-3 leading-relaxed">
-                  &ldquo;I had no idea my photos were so outdated. Updated them and my listing looks professional now.&rdquo;
-                </p>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-semibold">
+              <div className="bg-surface border border-border p-6 md:p-8 relative">
+                <span className="absolute top-4 right-4 text-4xl font-display text-border leading-none">&rdquo;</span>
+                <blockquote className="text-base leading-relaxed mb-4 relative z-10">
+                  I had no idea my photos were so outdated. Updated them and my listing looks professional now.
+                </blockquote>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-accent/10 rounded-full flex items-center justify-center text-accent font-display">
                     J
                   </div>
                   <div>
                     <p className="font-medium text-sm">James P.</p>
-                    <p className="text-xs text-text-light">Restaurant Owner, Miami</p>
+                    <p className="text-xs text-text-muted">Restaurant Owner, Miami</p>
                   </div>
                 </div>
               </div>
@@ -193,46 +190,58 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Final CTA */}
-        <section className="px-6 py-12 md:px-8 md:py-20 bg-primary text-white">
-          <div className="max-w-xl mx-auto text-center">
-            <h2 className="text-xl md:text-3xl font-bold mb-3">
-              Check your score now
-            </h2>
-            <p className="text-white/80 mb-6 text-base md:text-lg">
-              Find out if your Google presence is working for you or against you.
-            </p>
-            <button
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-primary font-semibold rounded-xl hover:bg-white/90 transition-colors w-full sm:w-auto"
-            >
-              Get Your Free Score
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-              </svg>
-            </button>
+        {/* Final CTA - Editorial bold section */}
+        <section className="px-6 py-20 md:px-12 lg:px-20 md:py-32 bg-primary text-white relative overflow-hidden">
+          {/* Decorative elements */}
+          <div className="absolute top-0 left-0 w-full h-px bg-white/10" />
+          <div className="absolute -right-20 top-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-white/5 blur-3xl" />
+
+          <div className="max-w-4xl mx-auto relative z-10">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+              <div>
+                <p className="text-xs tracking-[0.2em] uppercase text-white/60 mb-4">Ready?</p>
+                <h2 className="text-3xl md:text-5xl tracking-tight mb-4">
+                  Check your score<br />
+                  <span className="italic text-accent">right now.</span>
+                </h2>
+                <p className="text-white/70 text-lg">
+                  Find out if Google is working for you or against you.
+                </p>
+              </div>
+              <div className="md:text-right">
+                <button
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-primary font-medium tracking-wide hover:bg-white/90 transition-colors group"
+                >
+                  Get Your Free Score
+                  <svg className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="px-6 py-8 border-t border-border">
+      {/* Footer - Minimal editorial */}
+      <footer className="px-6 py-12 md:px-12 lg:px-20 border-t border-border">
         <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col gap-4 md:flex-row md:justify-between md:items-center">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-col gap-6 md:flex-row md:justify-between md:items-center">
+            <div className="flex items-center gap-3">
               <Logo size="sm" showWordmark={false} />
               <span className="text-sm text-text-muted">
                 © 2025 Curb Appeal
               </span>
             </div>
-            <nav className="flex items-center gap-6 text-sm text-text-muted">
-              <Link href="/pricing" className="hover:text-foreground transition-colors">
+            <nav className="flex items-center gap-8 text-sm">
+              <Link href="/pricing" className="text-text-muted hover:text-foreground transition-colors tracking-wide">
                 Pricing
               </Link>
-              <Link href="/privacy" className="hover:text-foreground transition-colors">
+              <Link href="/privacy" className="text-text-muted hover:text-foreground transition-colors tracking-wide">
                 Privacy
               </Link>
-              <Link href="/terms" className="hover:text-foreground transition-colors">
+              <Link href="/terms" className="text-text-muted hover:text-foreground transition-colors tracking-wide">
                 Terms
               </Link>
             </nav>

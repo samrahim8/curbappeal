@@ -161,10 +161,10 @@ export function BusinessSearch({
           autoFocus={autoFocus}
           className={`
             w-full ${sizeClasses[size]} pl-12 pr-4
-            bg-white border-2 border-border rounded-2xl
-            text-foreground placeholder:text-text-muted
-            focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary
-            shadow-lg hover:shadow-xl transition-all
+            bg-white border border-border
+            text-foreground placeholder:text-text-light
+            focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary
+            shadow-md hover:shadow-lg transition-all
           `}
         />
 
@@ -178,8 +178,8 @@ export function BusinessSearch({
 
       {/* Dropdown */}
       {showDropdown && predictions.length > 0 && (
-        <div className="absolute z-50 w-full mt-2 bg-surface border border-border rounded-xl shadow-lg overflow-hidden">
-          <ul className="py-2">
+        <div className="absolute z-50 w-full mt-1 bg-surface border border-border shadow-lg overflow-hidden">
+          <ul className="py-1">
             {predictions.map((prediction, index) => (
               <li key={prediction.place_id}>
                 <button
