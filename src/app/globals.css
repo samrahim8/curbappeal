@@ -1,32 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  /* House Call Design System */
-  --ivory: #FAF7F2;
-  --cream: #F5F0E6;
-  --walnut: #3B2F2A;
-  --walnut-mid: #5C4B44;
-  --walnut-light: #7A6D66;
-  --forest: #2D4A3E;
-  --forest-light: #3D6354;
-  --brass: #B8963E;
-  --brass-light: #D4B05C;
-  --border: #DDD5C8;
-  --border-dark: #C4B8A8;
+  /* Craft-inspired palette */
+  --background: #F5F3ED;
+  --surface: #FFFFFF;
+  --text: #1A1A1A;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --accent: #2D4A3E;
+  --accent-light: #3D6354;
+  --border: #E5E2DB;
+  --border-light: #EEEBE4;
 }
 
 @theme inline {
-  --color-ivory: var(--ivory);
-  --color-cream: var(--cream);
-  --color-walnut: var(--walnut);
-  --color-walnut-mid: var(--walnut-mid);
-  --color-walnut-light: var(--walnut-light);
-  --color-forest: var(--forest);
-  --color-forest-light: var(--forest-light);
-  --color-brass: var(--brass);
-  --color-brass-light: var(--brass-light);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
   --color-border: var(--border);
-  --color-border-dark: var(--border-dark);
+  --color-border-light: var(--border-light);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
 }
@@ -37,10 +33,55 @@
 }
 
 body {
-  background: var(--ivory);
-  color: var(--walnut);
-  font-family: var(--font-body), Georgia, serif;
-  line-height: 1.65;
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--font-body), system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+/* Glass button effect */
+.glass-button {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.glass-button:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Primary button */
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.1),
+    0 4px 12px rgba(45, 74, 62, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: var(--accent-light);
+  transform: translateY(-1px);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.12),
+    0 8px 24px rgba(45, 74, 62, 0.25);
+}
+
+/* Card shadow */
+.shadow-card {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 6px 16px rgba(0, 0, 0, 0.06);
 }
 
 /* Prevent iOS zoom on input focus */

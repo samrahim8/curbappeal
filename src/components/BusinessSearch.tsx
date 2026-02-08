@@ -96,63 +96,60 @@ export function BusinessSearch() {
 
   return (
     <div ref={containerRef} className="relative w-full">
-      {/* Input + Button */}
-      <div className="flex flex-col sm:flex-row gap-3">
-        {/* Input */}
-        <div className="relative flex-1">
-          <input
-            ref={inputRef}
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onFocus={() => predictions.length > 0 && setShowDropdown(true)}
-            onKeyDown={handleKeyDown}
-            placeholder="Enter your business name..."
-            className="w-full h-12 px-4 text-base bg-cream border border-border rounded-md
-                       text-walnut placeholder:text-walnut-light font-body
-                       focus:outline-none focus:border-forest focus:ring-1 focus:ring-forest/20
-                       transition-colors"
-          />
-          {isLoading && (
-            <div className="absolute right-4 top-1/2 -translate-y-1/2">
-              <div className="w-5 h-5 border-2 border-forest/30 border-t-forest rounded-full animate-spin" />
+      {/* Search Input with Glass Effect */}
+      <div className="relative">
+        <div className="glass-button rounded-2xl p-1">
+          <div className="flex items-center">
+            <div className="flex-1 relative">
+              <input
+                ref={inputRef}
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onFocus={() => predictions.length > 0 && setShowDropdown(true)}
+                onKeyDown={handleKeyDown}
+                placeholder="Enter your business name..."
+                className="w-full h-12 pl-4 pr-12 text-base bg-transparent
+                         text-text placeholder:text-text-muted
+                         focus:outline-none rounded-xl"
+              />
+              {isLoading && (
+                <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                  <div className="w-5 h-5 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
+                </div>
+              )}
             </div>
-          )}
+            <button
+              type="button"
+              onClick={() => inputRef.current?.focus()}
+              className="btn-primary h-10 px-5 rounded-xl text-sm font-medium flex items-center gap-2 shrink-0"
+            >
+              <span className="hidden sm:inline">Get Score</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+          </div>
         </div>
-
-        {/* Button */}
-        <button
-          type="button"
-          onClick={() => inputRef.current?.focus()}
-          className="h-12 px-6 bg-forest hover:bg-forest-light active:bg-forest-light
-                     text-white font-medium rounded-md transition-all
-                     hover:-translate-y-px
-                     flex items-center justify-center gap-2"
-        >
-          <span>Get Score</span>
-          <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </button>
       </div>
 
       {/* Dropdown */}
       {showDropdown && predictions.length > 0 && (
-        <div className="absolute z-50 left-0 right-0 mt-2 bg-cream border border-border rounded-md shadow-lg overflow-hidden">
+        <div className="absolute z-50 left-0 right-0 mt-2 bg-surface rounded-2xl shadow-card overflow-hidden border border-border-light">
           <ul className="max-h-64 overflow-y-auto">
             {predictions.map((prediction, index) => (
               <li key={prediction.place_id}>
                 <button
                   onClick={() => handleSelect(prediction)}
                   onMouseEnter={() => setSelectedIndex(index)}
-                  className={`w-full px-4 py-3 text-left transition-colors border-b border-border/50 last:border-0 ${
-                    selectedIndex === index ? "bg-ivory" : "hover:bg-ivory"
+                  className={`w-full px-4 py-3 text-left transition-colors ${
+                    selectedIndex === index ? "bg-background" : "hover:bg-background"
                   }`}
                 >
-                  <div className="font-medium text-walnut text-sm truncate">
+                  <div className="font-medium text-text text-sm truncate">
                     {prediction.structured_formatting.main_text}
                   </div>
-                  <div className="text-sm text-walnut-light truncate">
+                  <div className="text-sm text-text-muted truncate">
                     {prediction.structured_formatting.secondary_text}
                   </div>
                 </button>

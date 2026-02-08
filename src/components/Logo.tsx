@@ -39,7 +39,7 @@ export function Logo({ size = "md", showWordmark = true, className = "", linkToH
         <circle cx="36" cy="44" r="1.5" fill="#2D4A3E"/>
       </svg>
       {showWordmark && (
-        <span className={`font-display tracking-wider text-walnut ${text}`}>
+        <span className={`font-display tracking-wide text-text ${text}`}>
           Curb Appeal
         </span>
       )}

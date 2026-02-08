@@ -259,13 +259,13 @@ export function AuditResults({ audit }: AuditResultsProps) {
   };
 
   return (
-    <div className="min-h-[100dvh] bg-ivory">
+    <div className="min-h-[100dvh] bg-background">
       {/* Header */}
       <header className="flex items-center justify-between px-5 py-4 md:px-8 md:py-5 border-b border-border">
         <Logo size="md" linkToHome />
         <button
           onClick={handleShare}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-forest text-white rounded-lg font-medium text-sm hover:bg-forest-light transition-colors"
+          className="glass-button inline-flex items-center gap-2 px-4 py-2 rounded-full font-medium text-sm text-text"
         >
           {copied ? (
             <>
@@ -352,13 +352,13 @@ export function AuditResults({ audit }: AuditResultsProps) {
               <div className="mt-6 flex items-center gap-4">
                 <Link
                   href="/pricing"
-                  className="inline-flex items-center justify-center px-5 py-2.5 bg-forest text-white font-semibold rounded-lg hover:bg-forest-light transition-colors"
+                  className="btn-primary inline-flex items-center justify-center px-5 py-2.5 rounded-full font-semibold"
                 >
                   Improve This Score
                 </Link>
                 <button
                   onClick={handleShare}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 text-walnut-light hover:text-walnut font-medium rounded-lg hover:bg-cream transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 text-text-secondary hover:text-text font-medium rounded-full hover:bg-surface transition-colors"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
@@ -450,7 +450,7 @@ export function AuditResults({ audit }: AuditResultsProps) {
         </section>
 
         {/* CTA Section */}
-        <section className="bg-forest text-white rounded-2xl p-8 md:p-12 text-center">
+        <section className="bg-accent text-white rounded-3xl p-8 md:p-12 text-center shadow-card">
           <h2 className="font-display text-2xl md:text-3xl mb-4">
             Want to improve this score?
           </h2>
@@ -462,13 +462,13 @@ export function AuditResults({ audit }: AuditResultsProps) {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/pricing"
-              className="inline-flex items-center justify-center px-6 py-3 bg-white text-forest font-semibold rounded-lg hover:bg-ivory transition-colors w-full sm:w-auto"
+              className="inline-flex items-center justify-center px-6 py-3 bg-white text-accent font-semibold rounded-full hover:bg-background transition-colors w-full sm:w-auto"
             >
               Start Free Trial — $29/month
             </Link>
             <a
               href="#fix-it-for-me"
-              className="inline-flex items-center justify-center px-6 py-3 border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors w-full sm:w-auto"
+              className="inline-flex items-center justify-center px-6 py-3 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-colors w-full sm:w-auto"
             >
               Get it fixed for me — $499
             </a>
@@ -477,10 +477,10 @@ export function AuditResults({ audit }: AuditResultsProps) {
 
         {/* Check Another Business */}
         <section className="mt-12 text-center">
-          <p className="text-walnut-light mb-4">Want to check another business?</p>
+          <p className="text-text-muted mb-4">Want to check another business?</p>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-forest font-medium hover:text-forest-light transition-colors"
+            className="inline-flex items-center gap-2 text-accent font-medium hover:text-accent-light transition-colors"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -495,18 +495,18 @@ export function AuditResults({ audit }: AuditResultsProps) {
         <div className="max-w-4xl xl:max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2">
             <Logo size="sm" showWordmark={false} />
-            <span className="text-sm text-walnut-light">
+            <span className="text-sm text-text-muted">
               © 2025 Curb Appeal. All rights reserved.
             </span>
           </div>
-          <nav className="flex items-center gap-6 text-sm text-walnut-light">
-            <Link href="/pricing" className="hover:text-forest transition-colors">
+          <nav className="flex items-center gap-6 text-sm text-text-secondary">
+            <Link href="/pricing" className="hover:text-text transition-colors">
               Pricing
             </Link>
-            <Link href="/privacy" className="hover:text-forest transition-colors">
+            <Link href="/privacy" className="hover:text-text transition-colors">
               Privacy
             </Link>
-            <Link href="/terms" className="hover:text-forest transition-colors">
+            <Link href="/terms" className="hover:text-text transition-colors">
               Terms
             </Link>
           </nav>
@@ -514,10 +514,10 @@ export function AuditResults({ audit }: AuditResultsProps) {
       </footer>
 
       {/* Sticky Mobile CTA */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-ivory border-t border-border md:hidden safe-area-bottom">
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background border-t border-border md:hidden safe-area-bottom">
         <Link
           href="/pricing"
-          className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-forest text-white font-semibold rounded-lg hover:bg-forest-light transition-colors min-h-[52px]"
+          className="btn-primary flex items-center justify-center gap-2 w-full px-6 py-4 rounded-full font-semibold min-h-[52px]"
         >
           Improve This Score
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
