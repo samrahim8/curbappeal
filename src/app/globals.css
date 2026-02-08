@@ -1,24 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  /* 1960s California Motel */
-  --background: #FDF9F3;
-  --foreground: #2D2A26;
-  --accent: #3B9B9B;
-  --accent-hover: #2D7A7A;
-  --muted: #7D756A;
-  --border: #E5DED3;
-  --surface: #FFFFFF;
+  /* House Call Design System */
+  --ivory: #FAF7F2;
+  --cream: #F5F0E6;
+  --walnut: #3B2F2A;
+  --walnut-mid: #5C4B44;
+  --walnut-light: #7A6D66;
+  --forest: #2D4A3E;
+  --forest-light: #3D6354;
+  --brass: #B8963E;
+  --brass-light: #D4B05C;
+  --border: #DDD5C8;
+  --border-dark: #C4B8A8;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-accent: var(--accent);
-  --color-accent-hover: var(--accent-hover);
-  --color-muted: var(--muted);
+  --color-ivory: var(--ivory);
+  --color-cream: var(--cream);
+  --color-walnut: var(--walnut);
+  --color-walnut-mid: var(--walnut-mid);
+  --color-walnut-light: var(--walnut-light);
+  --color-forest: var(--forest);
+  --color-forest-light: var(--forest-light);
+  --color-brass: var(--brass);
+  --color-brass-light: var(--brass-light);
   --color-border: var(--border);
-  --color-surface: var(--surface);
+  --color-border-dark: var(--border-dark);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
 }
@@ -29,9 +37,10 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-body), system-ui, sans-serif;
+  background: var(--ivory);
+  color: var(--walnut);
+  font-family: var(--font-body), Georgia, serif;
+  line-height: 1.65;
 }
 
 /* Prevent iOS zoom on input focus */

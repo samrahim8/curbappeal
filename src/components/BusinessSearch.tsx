@@ -95,8 +95,8 @@ export function BusinessSearch() {
   };
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-xl">
-      {/* Input + Button: Stack on mobile, row on desktop */}
+    <div ref={containerRef} className="relative w-full">
+      {/* Input + Button */}
       <div className="flex flex-col sm:flex-row gap-3">
         {/* Input */}
         <div className="relative flex-1">
@@ -108,28 +108,29 @@ export function BusinessSearch() {
             onFocus={() => predictions.length > 0 && setShowDropdown(true)}
             onKeyDown={handleKeyDown}
             placeholder="Enter your business name..."
-            className="w-full h-12 sm:h-14 px-4 text-base bg-surface border-2 border-border rounded-lg
-                       text-foreground placeholder:text-muted
-                       focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/10
+            className="w-full h-12 px-4 text-base bg-cream border border-border rounded-md
+                       text-walnut placeholder:text-walnut-light font-body
+                       focus:outline-none focus:border-forest focus:ring-1 focus:ring-forest/20
                        transition-colors"
           />
           {isLoading && (
             <div className="absolute right-4 top-1/2 -translate-y-1/2">
-              <div className="w-5 h-5 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
+              <div className="w-5 h-5 border-2 border-forest/30 border-t-forest rounded-full animate-spin" />
             </div>
           )}
         </div>
 
-        {/* Button - THE bold move */}
+        {/* Button */}
         <button
           type="button"
           onClick={() => inputRef.current?.focus()}
-          className="h-12 sm:h-14 px-6 bg-accent hover:bg-accent-hover active:bg-accent-hover
-                     text-white font-medium rounded-lg transition-colors
+          className="h-12 px-6 bg-forest hover:bg-forest-light active:bg-forest-light
+                     text-white font-medium rounded-md transition-all
+                     hover:-translate-y-px
                      flex items-center justify-center gap-2"
         >
           <span>Get Score</span>
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
         </button>
@@ -137,7 +138,7 @@ export function BusinessSearch() {
 
       {/* Dropdown */}
       {showDropdown && predictions.length > 0 && (
-        <div className="absolute z-50 left-0 right-0 sm:right-auto sm:w-[calc(100%-120px)] mt-2 bg-surface border border-border rounded-lg shadow-lg overflow-hidden">
+        <div className="absolute z-50 left-0 right-0 mt-2 bg-cream border border-border rounded-md shadow-lg overflow-hidden">
           <ul className="max-h-64 overflow-y-auto">
             {predictions.map((prediction, index) => (
               <li key={prediction.place_id}>
@@ -145,13 +146,13 @@ export function BusinessSearch() {
                   onClick={() => handleSelect(prediction)}
                   onMouseEnter={() => setSelectedIndex(index)}
                   className={`w-full px-4 py-3 text-left transition-colors border-b border-border/50 last:border-0 ${
-                    selectedIndex === index ? "bg-accent/5" : "hover:bg-accent/5"
+                    selectedIndex === index ? "bg-ivory" : "hover:bg-ivory"
                   }`}
                 >
-                  <div className="font-medium text-foreground text-sm sm:text-base truncate">
+                  <div className="font-medium text-walnut text-sm truncate">
                     {prediction.structured_formatting.main_text}
                   </div>
-                  <div className="text-sm text-muted truncate">
+                  <div className="text-sm text-walnut-light truncate">
                     {prediction.structured_formatting.secondary_text}
                   </div>
                 </button>
