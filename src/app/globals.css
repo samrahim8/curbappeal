@@ -17,6 +17,8 @@
   --color-accent-hover: var(--accent-hover);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
 }
 
 html {

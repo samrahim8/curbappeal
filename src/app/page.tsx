@@ -8,7 +8,7 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="px-6 py-5 flex items-center justify-between">
-        <div className="text-lg font-semibold tracking-tight text-foreground">
+        <div className="font-display text-lg font-medium tracking-tight text-foreground">
           Curb Appeal
         </div>
         <Link
@@ -22,7 +22,7 @@ export default function Home() {
       {/* Hero */}
       <main className="px-6 pt-16 pb-24 md:pt-24 md:pb-32">
         <div className="max-w-xl">
-          <h1 className="text-4xl md:text-5xl font-semibold leading-tight tracking-tight mb-6">
+          <h1 className="font-display text-4xl md:text-5xl font-medium leading-[1.1] tracking-tight mb-6">
             Is Google helping or hurting your business?
           </h1>
 
