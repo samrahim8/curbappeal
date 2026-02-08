@@ -8,9 +8,9 @@ export default function Home() {
   return (
     <div className="bg-background min-h-screen">
       {/* Hero - Full viewport */}
-      <div className="h-[100dvh] flex flex-col">
+      <div className="h-[100dvh] grid grid-rows-[auto_1fr_auto] px-5 md:px-12 lg:px-20">
         {/* Navigation */}
-        <header className="flex items-center justify-between px-5 py-3 md:px-12 md:py-6 flex-shrink-0">
+        <header className="flex items-center justify-between py-3 md:py-6">
           <Logo size="sm" />
           <nav className="flex items-center gap-4 text-sm text-text-muted">
             <Link href="/pricing" className="hover:text-foreground transition-colors hidden sm:block">
@@ -22,29 +22,26 @@ export default function Home() {
           </nav>
         </header>
 
-        {/* Hero content */}
-        <section className="flex-1 flex flex-col px-5 pb-6 md:px-12 md:pb-16 lg:px-20">
-          {/* Headline - MASSIVE, fills the space */}
-          <h1 className="text-[3.25rem] leading-[1] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-bold tracking-[-0.02em] flex-1 flex items-center">
-            <span>
-              Is Google helping
-              <br />
-              or hurting
-              <br />
-              your business?
-            </span>
-          </h1>
+        {/* Headline - FILLS available space */}
+        <h1 className="text-[15vw] md:text-[10vw] lg:text-[8vw] leading-[0.9] font-bold tracking-[-0.03em] self-center">
+          Is Google
+          <br />
+          helping or
+          <br />
+          hurting your
+          <br />
+          business?
+        </h1>
 
-          {/* Bottom: search + trust */}
-          <div className="flex-shrink-0">
-            <div className="w-full max-w-xl mb-2">
-              <BusinessSearch size="large" placeholder="Search your business name..." />
-            </div>
-            <p className="text-text-muted text-sm">
-              Free audit. 30 seconds. No signup.
-            </p>
+        {/* Bottom: search + trust */}
+        <div className="pb-6 md:pb-12">
+          <div className="w-full max-w-xl mb-2">
+            <BusinessSearch size="large" placeholder="Search your business name..." />
           </div>
-        </section>
+          <p className="text-text-muted text-sm">
+            Free audit. 30 seconds. No signup.
+          </p>
+        </div>
       </div>
 
       {/* Below the fold */}
