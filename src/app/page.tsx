@@ -7,12 +7,12 @@ import { Logo } from "@/components/Logo";
 export default function Home() {
   return (
     <div className="bg-background min-h-screen">
-      {/* Hero - Full viewport, nothing competes */}
+      {/* Hero - Full viewport */}
       <div className="min-h-[100dvh] flex flex-col">
-        {/* Navigation - minimal */}
-        <header className="flex items-center justify-between px-5 py-4 sm:px-6 sm:py-6 md:px-12 md:py-8">
+        {/* Navigation */}
+        <header className="flex items-center justify-between px-5 py-4 md:px-12 md:py-6">
           <Logo size="sm" />
-          <nav className="flex items-center gap-5 text-sm text-text-muted">
+          <nav className="flex items-center gap-4 text-sm text-text-muted">
             <Link href="/pricing" className="hover:text-foreground transition-colors hidden sm:block">
               Pricing
             </Link>
@@ -22,11 +22,11 @@ export default function Home() {
           </nav>
         </header>
 
-        {/* Hero content - headline COMMANDS */}
-        <section className="flex-1 flex flex-col justify-end px-5 pb-6 sm:px-6 md:px-12 md:pb-20 lg:px-20 lg:pb-24">
-          {/* Headline - massive and commanding */}
-          <h1 className="text-[2.75rem] leading-[0.95] xs:text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] xl:text-[7rem] font-bold tracking-[-0.02em] max-w-5xl mb-8 sm:mb-10">
-            Is Google helping or hurting your business?
+        {/* Hero content */}
+        <section className="flex-1 flex flex-col justify-center px-5 py-8 md:justify-end md:px-12 md:pb-20 lg:px-20 lg:pb-24">
+          {/* Headline */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.1] mb-6 md:mb-10">
+            Is Google helping<br className="sm:hidden" /> or hurting<br className="hidden sm:block" /> your business?
           </h1>
 
           {/* Search bar */}
@@ -34,7 +34,7 @@ export default function Home() {
             <BusinessSearch size="large" placeholder="Search your business name..." />
           </div>
 
-          {/* Single trust line */}
+          {/* Trust line */}
           <p className="text-text-muted text-sm">
             Free audit. 30 seconds. No signup.
           </p>
