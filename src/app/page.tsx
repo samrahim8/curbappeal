@@ -33,13 +33,13 @@ export default function Home() {
           business?
         </h1>
 
-        {/* Bottom: search + trust */}
+        {/* Bottom: search CTA */}
         <div className="pb-6 md:pb-12">
-          <div className="w-full max-w-xl mb-2">
-            <BusinessSearch size="large" placeholder="Search your business name..." />
+          <div className="w-full max-w-2xl">
+            <BusinessSearch size="large" placeholder="Enter your business name..." />
           </div>
-          <p className="text-text-muted text-sm">
-            Free audit. 30 seconds. No signup.
+          <p className="text-text-muted text-sm mt-3">
+            Free audit. 30 seconds. No signup required.
           </p>
         </div>
       </div>

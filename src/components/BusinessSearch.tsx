@@ -125,54 +125,66 @@ export function BusinessSearch({
     }
   };
 
-  const sizeClasses = {
-    large: "h-14 sm:h-[60px] text-base sm:text-lg px-5 sm:px-6",
-    default: "h-12 sm:h-14 text-base px-4 sm:px-5",
-  };
+  const isLarge = size === "large";
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-xl">
-      <div className="relative">
-        {/* Search icon */}
-        <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
-          <svg
-            className="w-5 h-5 text-text-muted"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
+    <div ref={containerRef} className="relative w-full">
+      <div className={`relative flex ${isLarge ? 'flex-col sm:flex-row gap-3' : ''}`}>
+        {/* Input container */}
+        <div className="relative flex-1">
+          {/* Search icon */}
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+            <svg
+              className={`${isLarge ? 'w-6 h-6' : 'w-5 h-5'} text-text-muted`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </div>
+
+          <input
+            ref={inputRef}
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onFocus={() => predictions.length > 0 && setShowDropdown(true)}
+            onKeyDown={handleKeyDown}
+            placeholder={placeholder}
+            autoFocus={autoFocus}
+            className={`
+              w-full pl-12 pr-4
+              ${isLarge ? 'h-14 sm:h-16 text-lg' : 'h-12 text-base'}
+              bg-white border-2 border-border
+              text-foreground placeholder:text-text-muted
+              focus:outline-none focus:border-accent focus:ring-4 focus:ring-accent/10
+              shadow-md transition-all
+            `}
+          />
+
+          {/* Loading spinner */}
+          {isLoading && (
+            <div className="absolute right-4 top-1/2 -translate-y-1/2">
+              <div className="w-5 h-5 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
+            </div>
+          )}
         </div>
 
-        <input
-          ref={inputRef}
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onFocus={() => predictions.length > 0 && setShowDropdown(true)}
-          onKeyDown={handleKeyDown}
-          placeholder={placeholder}
-          autoFocus={autoFocus}
-          className={`
-            w-full ${sizeClasses[size]} pl-12 pr-4
-            bg-white border border-border
-            text-foreground placeholder:text-text-light
-            focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20
-            shadow-sm transition-all
-          `}
-        />
-
-        {/* Loading spinner */}
-        {isLoading && (
-          <div className="absolute right-4 top-1/2 -translate-y-1/2">
-            <div className="w-5 h-5 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-          </div>
+        {/* CTA Button for large size */}
+        {isLarge && (
+          <button
+            type="button"
+            onClick={() => inputRef.current?.focus()}
+            className="h-14 sm:h-16 px-6 sm:px-8 bg-accent hover:bg-accent/90 text-white font-semibold text-base sm:text-lg transition-colors whitespace-nowrap shadow-md"
+          >
+            Get Your Score
+          </button>
         )}
       </div>
 
