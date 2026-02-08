@@ -24,19 +24,19 @@ export default function Home() {
         </header>
 
         {/* Hero content - headline dominates */}
-        <section className="flex-1 flex flex-col justify-end px-6 pb-12 md:px-12 md:pb-20 lg:px-20 lg:pb-24">
-          {/* Headline - massive, planted at bottom-left */}
-          <h1 className="text-[3.5rem] leading-[0.95] sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[8rem] font-bold tracking-tight max-w-5xl mb-8 md:mb-10">
+        <section className="flex-1 flex flex-col justify-center md:justify-end px-6 pb-8 md:px-12 md:pb-20 lg:px-20 lg:pb-24">
+          {/* Headline - massive, planted at bottom-left on desktop, centered on mobile */}
+          <h1 className="text-[2.5rem] leading-[1] sm:text-5xl md:text-7xl lg:text-[6rem] xl:text-[7rem] font-bold tracking-tight max-w-5xl mb-6 md:mb-10">
             Is Google helping or hurting your business?
           </h1>
 
           {/* Search bar */}
-          <div className="max-w-xl mb-4">
+          <div className="w-full max-w-xl mb-4">
             <BusinessSearch size="large" placeholder="Search your business name..." />
           </div>
 
           {/* Single trust line */}
-          <p className="text-text-muted text-sm md:text-base">
+          <p className="text-text-muted text-sm">
             Free Google Business Profile audit. 30 seconds. No signup.
           </p>
         </section>
@@ -45,14 +45,14 @@ export default function Home() {
       {/* Below the fold */}
       <main>
         {/* Section 1: How it works */}
-        <section className="px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32">
-          <h2 className="text-3xl md:text-4xl font-bold mb-16 md:mb-20">How it works</h2>
+        <section className="px-6 py-16 md:px-12 md:py-28 lg:px-20 lg:py-32">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-10 md:mb-20">How it works</h2>
 
-          <div className="grid md:grid-cols-3 gap-12 md:gap-16 max-w-5xl">
+          <div className="grid md:grid-cols-3 gap-10 md:gap-16 max-w-5xl">
             {/* Step 1 */}
             <div>
-              <div className="text-6xl md:text-7xl font-bold text-border mb-4">1</div>
-              <h3 className="text-xl font-semibold mb-3">Search your business</h3>
+              <div className="text-5xl md:text-7xl font-bold text-border mb-3">1</div>
+              <h3 className="text-lg sm:text-xl font-semibold mb-2">Search your business</h3>
               <p className="text-text-muted leading-relaxed">
                 Type your business name and select it from Google&apos;s database. We&apos;ll pull your listing automatically.
               </p>
@@ -60,8 +60,8 @@ export default function Home() {
 
             {/* Step 2 */}
             <div>
-              <div className="text-6xl md:text-7xl font-bold text-border mb-4">2</div>
-              <h3 className="text-xl font-semibold mb-3">Get your score</h3>
+              <div className="text-5xl md:text-7xl font-bold text-border mb-3">2</div>
+              <h3 className="text-lg sm:text-xl font-semibold mb-2">Get your score</h3>
               <p className="text-text-muted leading-relaxed">
                 See your profile score out of 100 — broken down by photos, reviews, completeness, and activity.
               </p>
@@ -69,8 +69,8 @@ export default function Home() {
 
             {/* Step 3 */}
             <div>
-              <div className="text-6xl md:text-7xl font-bold text-border mb-4">3</div>
-              <h3 className="text-xl font-semibold mb-3">See what to fix</h3>
+              <div className="text-5xl md:text-7xl font-bold text-border mb-3">3</div>
+              <h3 className="text-lg sm:text-xl font-semibold mb-2">See what to fix</h3>
               <p className="text-text-muted leading-relaxed">
                 Get specific action items in plain English. No marketing jargon — just what to do next.
               </p>
@@ -79,22 +79,22 @@ export default function Home() {
         </section>
 
         {/* Section 2: Example score */}
-        <section className="px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 bg-surface-secondary">
-          <h2 className="text-3xl md:text-4xl font-bold mb-16 md:mb-20">What you&apos;ll get</h2>
+        <section className="px-6 py-16 md:px-12 md:py-28 lg:px-20 lg:py-32 bg-surface-secondary">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-10 md:mb-20">What you&apos;ll get</h2>
 
           <div className="max-w-3xl">
             {/* Mock audit result */}
-            <div className="bg-surface border border-border p-8 md:p-12">
+            <div className="bg-surface border border-border p-5 sm:p-8 md:p-12">
               {/* Business name + score */}
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-10 pb-10 border-b border-border">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 mb-8 pb-8 border-b border-border">
                 <div>
-                  <p className="text-sm text-text-muted mb-1">Example audit for</p>
-                  <h3 className="text-2xl md:text-3xl font-bold">Mike&apos;s Plumbing Co.</h3>
-                  <p className="text-text-muted">Orlando, FL</p>
+                  <p className="text-xs sm:text-sm text-text-muted mb-1">Example audit for</p>
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold">Mike&apos;s Plumbing Co.</h3>
+                  <p className="text-sm text-text-muted">Orlando, FL</p>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 sm:gap-4">
                   {/* Score circle */}
-                  <div className="relative w-24 h-24 md:w-28 md:h-28">
+                  <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28">
                     <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
                       <circle
                         cx="50"
@@ -117,7 +117,7 @@ export default function Home() {
                       />
                     </svg>
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <span className="text-3xl md:text-4xl font-bold text-score-warning">43</span>
+                      <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-score-warning">43</span>
                     </div>
                   </div>
                   <div className="text-left">
@@ -171,12 +171,12 @@ export default function Home() {
         </section>
 
         {/* Section 3: Final CTA */}
-        <section className="px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32">
+        <section className="px-6 py-16 md:px-12 md:py-28 lg:px-20 lg:py-32">
           <div className="max-w-2xl">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 md:mb-10 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-10 tracking-tight">
               Check your score.
             </h2>
-            <div className="max-w-xl mb-4">
+            <div className="w-full max-w-xl mb-4">
               <BusinessSearch size="large" placeholder="Search your business name..." />
             </div>
             <p className="text-text-muted text-sm md:text-base">
