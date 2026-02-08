@@ -2,12 +2,13 @@
 
 :root {
   /* 1960s California Motel */
-  --background: #FDF9F3;      /* sun-bleached cream */
-  --foreground: #3D3530;      /* warm charcoal, not black */
-  --accent: #3B9B9B;          /* pool blue/turquoise - THE bold move */
+  --background: #FDF9F3;
+  --foreground: #2D2A26;
+  --accent: #3B9B9B;
   --accent-hover: #2D7A7A;
-  --muted: #8B7355;           /* warm taupe */
-  --border: #E8E0D5;          /* warm gray */
+  --muted: #7D756A;
+  --border: #E5DED3;
+  --surface: #FFFFFF;
 }
 
 @theme inline {
@@ -17,15 +18,25 @@
   --color-accent-hover: var(--accent-hover);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-surface: var(--surface);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
 }
 
-html {
+* {
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+/* Prevent iOS zoom on input focus */
+@supports (-webkit-touch-callout: none) {
+  input, select, textarea {
+    font-size: 16px;
+  }
 }
