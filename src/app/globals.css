@@ -1,5 +1,29 @@
 @import "tailwindcss";
 
+:root {
+  /* 1960s California Motel */
+  --background: #FDF9F3;      /* sun-bleached cream */
+  --foreground: #3D3530;      /* warm charcoal, not black */
+  --accent: #3B9B9B;          /* pool blue/turquoise - THE bold move */
+  --accent-hover: #2D7A7A;
+  --muted: #8B7355;           /* warm taupe */
+  --border: #E8E0D5;          /* warm gray */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--background);
+  color: var(--foreground);
 }

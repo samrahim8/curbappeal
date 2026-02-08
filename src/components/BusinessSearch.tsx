@@ -12,17 +12,7 @@ interface PlacePrediction {
   };
 }
 
-interface BusinessSearchProps {
-  size?: "large" | "default";
-  autoFocus?: boolean;
-  placeholder?: string;
-}
-
-export function BusinessSearch({
-  size = "default",
-  autoFocus = false,
-  placeholder = "Type your business name...",
-}: BusinessSearchProps) {
+export function BusinessSearch() {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -58,16 +48,10 @@ export function BusinessSearch({
   }, []);
 
   useEffect(() => {
-    if (debounceRef.current) {
-      clearTimeout(debounceRef.current);
-    }
-    debounceRef.current = setTimeout(() => {
-      fetchPredictions(query);
-    }, 300);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => fetchPredictions(query), 300);
     return () => {
-      if (debounceRef.current) {
-        clearTimeout(debounceRef.current);
-      }
+      if (debounceRef.current) clearTimeout(debounceRef.current);
     };
   }, [query, fetchPredictions]);
 
@@ -89,7 +73,6 @@ export function BusinessSearch({
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (!showDropdown || predictions.length === 0) return;
-
     switch (e.key) {
       case "ArrowDown":
         e.preventDefault();
@@ -101,9 +84,7 @@ export function BusinessSearch({
         break;
       case "Enter":
         e.preventDefault();
-        if (selectedIndex >= 0 && selectedIndex < predictions.length) {
-          handleSelect(predictions[selectedIndex]);
-        }
+        if (selectedIndex >= 0) handleSelect(predictions[selectedIndex]);
         break;
       case "Escape":
         setShowDropdown(false);
@@ -113,39 +94,58 @@ export function BusinessSearch({
   };
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-md">
-      <input
-        ref={inputRef}
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        onFocus={() => predictions.length > 0 && setShowDropdown(true)}
-        onKeyDown={handleKeyDown}
-        placeholder={placeholder}
-        autoFocus={autoFocus}
-        className="w-full h-12 px-4 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-      />
-
-      {isLoading && (
-        <div className="absolute right-3 top-1/2 -translate-y-1/2">
-          <div className="w-5 h-5 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin" />
+    <div ref={containerRef} className="relative">
+      {/* Search input + button row */}
+      <div className="flex gap-3">
+        <div className="relative flex-1">
+          <input
+            ref={inputRef}
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onFocus={() => predictions.length > 0 && setShowDropdown(true)}
+            onKeyDown={handleKeyDown}
+            placeholder="Search your business name..."
+            className="w-full h-14 px-5 text-base bg-white border-2 border-border rounded-lg
+                       text-foreground placeholder:text-muted/60
+                       focus:outline-none focus:border-accent transition-colors"
+          />
+          {isLoading && (
+            <div className="absolute right-4 top-1/2 -translate-y-1/2">
+              <div className="w-5 h-5 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
+            </div>
+          )}
         </div>
-      )}
 
+        {/* Pool blue button - THE bold move */}
+        <button
+          type="button"
+          onClick={() => inputRef.current?.focus()}
+          className="h-14 px-6 bg-accent hover:bg-accent-hover text-white font-medium rounded-lg transition-colors whitespace-nowrap"
+        >
+          Get Score
+        </button>
+      </div>
+
+      {/* Dropdown */}
       {showDropdown && predictions.length > 0 && (
-        <div className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
-          <ul className="py-1">
+        <div className="absolute z-50 w-full mt-2 bg-white border border-border rounded-lg shadow-lg overflow-hidden">
+          <ul>
             {predictions.map((prediction, index) => (
               <li key={prediction.place_id}>
                 <button
                   onClick={() => handleSelect(prediction)}
                   onMouseEnter={() => setSelectedIndex(index)}
-                  className={`w-full px-4 py-3 text-left ${
-                    selectedIndex === index ? "bg-gray-100" : "hover:bg-gray-50"
+                  className={`w-full px-5 py-4 text-left transition-colors ${
+                    selectedIndex === index ? "bg-accent/5" : "hover:bg-accent/5"
                   }`}
                 >
-                  <div className="font-medium">{prediction.structured_formatting.main_text}</div>
-                  <div className="text-sm text-gray-500">{prediction.structured_formatting.secondary_text}</div>
+                  <div className="font-medium text-foreground">
+                    {prediction.structured_formatting.main_text}
+                  </div>
+                  <div className="text-sm text-muted">
+                    {prediction.structured_formatting.secondary_text}
+                  </div>
                 </button>
               </li>
             ))}
