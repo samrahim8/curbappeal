@@ -1,17 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  /* Editorial palette - sophisticated, muted with one pop color */
-  --background: #F7F5F2;
-  --foreground: #1C1C1C;
+  /* American Small Business palette */
+  --background: #F5F7FA;
+  --foreground: #1A1A1A;
 
-  /* Brand colors - rich navy/charcoal */
-  --primary: #2C3E50;
-  --primary-light: #34495E;
-  --primary-dark: #1A252F;
+  /* Primary - Deep Navy (trustworthy, professional) */
+  --primary: #1E3A5F;
+  --primary-light: #2D4A6F;
+  --primary-dark: #152A45;
 
-  /* Accent - warm coral pop color */
-  --accent: #E07A5F;
+  /* Accent - Bright Coral/Orange (energetic, action) */
+  --accent: #E8573F;
+  --accent-hover: #D64A33;
 
   /* Score colors */
   --score-excellent: #22C55E;
@@ -20,18 +21,18 @@
   --score-orange: #F97316;
   --score-poor: #EF4444;
 
-  /* Neutrals - warmer grays */
+  /* Neutrals - cool blue-grays */
   --surface: #FFFFFF;
-  --surface-secondary: #F0EDEA;
-  --border: #D9D5D0;
-  --border-light: #E8E5E0;
-  --text-muted: #5C5C5C;
-  --text-light: #8A8A8A;
+  --surface-secondary: #EDF1F5;
+  --border: #D1D9E0;
+  --border-light: #E5EAF0;
+  --text-muted: #5A6B7A;
+  --text-light: #8B98A5;
 
-  /* Shadows - softer */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(30, 58, 95, 0.06);
+  --shadow-md: 0 4px 16px rgba(30, 58, 95, 0.08);
+  --shadow-lg: 0 12px 32px rgba(30, 58, 95, 0.12);
 }
 
 @theme inline {
@@ -41,6 +42,7 @@
   --color-primary-light: var(--primary-light);
   --color-primary-dark: var(--primary-dark);
   --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
   --color-surface: var(--surface);
   --color-surface-secondary: var(--surface-secondary);
   --color-border: var(--border);
@@ -105,8 +107,21 @@ blockquote {
 
 /* Selection styling */
 ::selection {
-  background: var(--accent);
+  background: var(--primary);
   color: white;
+}
+
+/* Americana stripe accent */
+.stripe-accent {
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--primary) 33%,
+    #FFFFFF 33%,
+    #FFFFFF 66%,
+    var(--accent) 66%,
+    var(--accent) 100%
+  );
 }
 
 /* Input zoom prevention on iOS */
