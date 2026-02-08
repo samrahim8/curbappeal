@@ -6,245 +6,163 @@ import { Logo } from "@/components/Logo";
 
 export default function Home() {
   return (
-    <div className="overflow-x-hidden bg-background">
-      {/* Hero - Full viewport, bold American aesthetic */}
-      <div className="min-h-[100dvh] flex flex-col relative">
-        {/* Geometric accent - top right corner */}
-        <div className="absolute top-0 right-0 w-32 h-32 md:w-64 md:h-64">
-          <div className="absolute top-0 right-0 w-full h-full bg-accent/10" />
-          <div className="absolute top-4 right-4 md:top-8 md:right-8 w-full h-full border-2 border-primary/10" />
-        </div>
-
-        {/* Header */}
-        <header className="flex items-center justify-between px-6 py-5 md:px-12 md:py-6 relative z-10">
+    <div className="bg-background min-h-screen">
+      {/* Hero - Full viewport, nothing competes */}
+      <div className="min-h-[100dvh] flex flex-col">
+        {/* Navigation - understated */}
+        <header className="flex items-center justify-between px-6 py-6 md:px-12 md:py-8">
           <Logo size="sm" className="md:hidden" />
           <Logo size="md" className="hidden md:flex" />
-          <nav className="flex items-center gap-6">
-            <Link
-              href="/pricing"
-              className="text-text-muted hover:text-primary transition-colors hidden sm:block text-sm font-medium"
-            >
+          <nav className="flex items-center gap-6 text-sm text-text-muted">
+            <Link href="/pricing" className="hover:text-foreground transition-colors hidden sm:block">
               Pricing
             </Link>
-            <Link
-              href="/login"
-              className="text-sm font-medium text-primary hover:text-primary-dark transition-colors"
-            >
+            <Link href="/login" className="hover:text-foreground transition-colors">
               Log in
             </Link>
           </nav>
         </header>
 
-        {/* Hero Content */}
-        <section className="flex-1 flex flex-col justify-center px-6 pb-16 md:px-12 lg:px-20 relative z-10">
-          <div className="max-w-4xl">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary/5 border border-primary/10 rounded-full mb-8">
-              <div className="w-2 h-2 bg-accent rounded-full" />
-              <span className="text-xs font-semibold text-primary tracking-wide uppercase">
-                Free for Local Businesses
-              </span>
-            </div>
+        {/* Hero content - headline dominates */}
+        <section className="flex-1 flex flex-col justify-end px-6 pb-12 md:px-12 md:pb-20 lg:px-20 lg:pb-24">
+          {/* Headline - massive, planted at bottom-left */}
+          <h1 className="text-[3.5rem] leading-[0.95] sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[8rem] font-bold tracking-tight max-w-5xl mb-8 md:mb-10">
+            Is Google helping or hurting your business?
+          </h1>
 
-            {/* Headline - Big, bold, confident */}
-            <h1 className="text-[2.75rem] leading-[1.05] sm:text-6xl md:text-7xl lg:text-[5.5rem] mb-6 tracking-tight text-primary">
-              Is Google helping<br />
-              or <span className="text-accent">hurting</span> your<br />
-              business?
-            </h1>
-
-            {/* Subheadline */}
-            <p className="text-lg md:text-xl text-text-muted mb-10 max-w-lg leading-relaxed">
-              Get your free Google Business Profile score in 30 seconds. See exactly what&apos;s working and what needs fixing.
-            </p>
-
-            {/* Search */}
-            <div className="max-w-xl mb-8">
-              <BusinessSearch size="large" placeholder="Search for your business..." />
-            </div>
-
-            {/* Trust indicators */}
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-text-muted">
-              <span className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-score-excellent" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                No signup required
-              </span>
-              <span className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-score-excellent" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                Results in 30 seconds
-              </span>
-              <span className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-score-excellent" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-                100% free
-              </span>
-            </div>
+          {/* Search bar */}
+          <div className="max-w-xl mb-4">
+            <BusinessSearch size="large" placeholder="Search your business name..." />
           </div>
-        </section>
 
-        {/* Bottom stripe accent */}
-        <div className="h-1 stripe-accent" />
+          {/* Single trust line */}
+          <p className="text-text-muted text-sm md:text-base">
+            Free Google Business Profile audit. 30 seconds. No signup.
+          </p>
+        </section>
       </div>
 
-      {/* Rest of page */}
+      {/* Below the fold */}
       <main>
-        {/* Stats bar */}
-        <section className="bg-primary text-white py-12 md:py-16">
-          <div className="max-w-5xl mx-auto px-6 md:px-12">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center">
-              <div>
-                <div className="text-3xl md:text-4xl font-bold mb-1">73%</div>
-                <div className="text-white/70 text-sm">of consumers search<br className="hidden md:block" /> for local businesses</div>
-              </div>
-              <div>
-                <div className="text-3xl md:text-4xl font-bold mb-1">50%</div>
-                <div className="text-white/70 text-sm">visit within<br className="hidden md:block" /> 24 hours</div>
-              </div>
-              <div>
-                <div className="text-3xl md:text-4xl font-bold mb-1">88%</div>
-                <div className="text-white/70 text-sm">trust online reviews<br className="hidden md:block" /> as much as friends</div>
-              </div>
-              <div>
-                <div className="text-3xl md:text-4xl font-bold mb-1">46%</div>
-                <div className="text-white/70 text-sm">of Google searches<br className="hidden md:block" /> are local</div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Section 1: How it works */}
+        <section className="px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32">
+          <h2 className="text-3xl md:text-4xl font-bold mb-16 md:mb-20">How it works</h2>
 
-        {/* How It Works */}
-        <section className="px-6 py-16 md:px-12 lg:px-20 md:py-24 bg-surface">
-          <div className="max-w-5xl mx-auto">
-            {/* Section header */}
-            <div className="text-center mb-12 md:mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl text-primary mb-4">
-                How it works
-              </h2>
-              <p className="text-text-muted text-lg max-w-2xl mx-auto">
-                Three simple steps to understand your Google presence
+          <div className="grid md:grid-cols-3 gap-12 md:gap-16 max-w-5xl">
+            {/* Step 1 */}
+            <div>
+              <div className="text-6xl md:text-7xl font-bold text-border mb-4">1</div>
+              <h3 className="text-xl font-semibold mb-3">Search your business</h3>
+              <p className="text-text-muted leading-relaxed">
+                Type your business name and select it from Google&apos;s database. We&apos;ll pull your listing automatically.
               </p>
             </div>
 
-            {/* Steps */}
-            <div className="grid md:grid-cols-3 gap-8 md:gap-12">
-              {/* Step 1 */}
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
-                  1
-                </div>
-                <h3 className="text-xl font-semibold text-primary mb-3">Search your business</h3>
-                <p className="text-text-muted leading-relaxed">
-                  Type your business name and select it from the dropdown. We&apos;ll find your Google listing.
-                </p>
-              </div>
-
-              {/* Step 2 */}
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
-                  2
-                </div>
-                <h3 className="text-xl font-semibold text-primary mb-3">Get your score</h3>
-                <p className="text-text-muted leading-relaxed">
-                  See your profile score out of 100, broken down by category so you know where you stand.
-                </p>
-              </div>
-
-              {/* Step 3 */}
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">
-                  3
-                </div>
-                <h3 className="text-xl font-semibold text-primary mb-3">See what to fix</h3>
-                <p className="text-text-muted leading-relaxed">
-                  Get specific action items in plain English. No marketing jargon, just clear next steps.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonials */}
-        <section className="px-6 py-16 md:px-12 lg:px-20 md:py-24 bg-surface-secondary">
-          <div className="max-w-5xl mx-auto">
-            {/* Section header */}
-            <div className="text-center mb-12 md:mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl text-primary mb-4">
-                Built for businesses like yours
-              </h2>
-              <p className="text-text-muted text-lg max-w-2xl mx-auto">
-                Trusted by plumbers, restaurants, salons, and local businesses across America
+            {/* Step 2 */}
+            <div>
+              <div className="text-6xl md:text-7xl font-bold text-border mb-4">2</div>
+              <h3 className="text-xl font-semibold mb-3">Get your score</h3>
+              <p className="text-text-muted leading-relaxed">
+                See your profile score out of 100 — broken down by photos, reviews, completeness, and activity.
               </p>
             </div>
 
-            {/* Testimonial cards */}
-            <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-              {/* Testimonial 1 */}
-              <div className="bg-surface p-6 md:p-8 border border-border relative">
-                <div className="absolute top-4 right-4 text-accent text-4xl font-serif">&ldquo;</div>
-                <div className="mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-accent">&#9733;</span>
-                  ))}
+            {/* Step 3 */}
+            <div>
+              <div className="text-6xl md:text-7xl font-bold text-border mb-4">3</div>
+              <h3 className="text-xl font-semibold mb-3">See what to fix</h3>
+              <p className="text-text-muted leading-relaxed">
+                Get specific action items in plain English. No marketing jargon — just what to do next.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 2: Example score */}
+        <section className="px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32 bg-surface-secondary">
+          <h2 className="text-3xl md:text-4xl font-bold mb-16 md:mb-20">What you&apos;ll get</h2>
+
+          <div className="max-w-3xl">
+            {/* Mock audit result */}
+            <div className="bg-surface border border-border p-8 md:p-12">
+              {/* Business name + score */}
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-10 pb-10 border-b border-border">
+                <div>
+                  <p className="text-sm text-text-muted mb-1">Example audit for</p>
+                  <h3 className="text-2xl md:text-3xl font-bold">Mike&apos;s Plumbing Co.</h3>
+                  <p className="text-text-muted">Orlando, FL</p>
                 </div>
-                <p className="text-foreground mb-6 leading-relaxed">
-                  Finally, someone explains Google in a way I can understand. Found out I was missing my hours — now I get weekend calls!
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
-                    M
+                <div className="flex items-center gap-4">
+                  {/* Score circle */}
+                  <div className="relative w-24 h-24 md:w-28 md:h-28">
+                    <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="45"
+                        fill="none"
+                        stroke="#E5E2DD"
+                        strokeWidth="8"
+                      />
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="45"
+                        fill="none"
+                        stroke="#F59E0B"
+                        strokeWidth="8"
+                        strokeLinecap="round"
+                        strokeDasharray="283"
+                        strokeDashoffset="161"
+                      />
+                    </svg>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <span className="text-3xl md:text-4xl font-bold text-score-warning">43</span>
+                    </div>
                   </div>
-                  <div>
-                    <div className="font-semibold text-primary">Mike R.</div>
-                    <div className="text-sm text-text-muted">Plumber, Orlando</div>
+                  <div className="text-left">
+                    <p className="text-sm text-text-muted">Score</p>
+                    <p className="font-semibold text-score-warning">At Risk</p>
                   </div>
                 </div>
               </div>
 
-              {/* Testimonial 2 */}
-              <div className="bg-surface p-6 md:p-8 border border-border relative">
-                <div className="absolute top-4 right-4 text-accent text-4xl font-serif">&ldquo;</div>
-                <div className="mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-accent">&#9733;</span>
-                  ))}
-                </div>
-                <p className="text-foreground mb-6 leading-relaxed">
-                  My score was 42. Six weeks later it&apos;s 78. I just followed the action items. More calls than ever.
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
-                    S
+              {/* Action items */}
+              <div>
+                <p className="text-sm text-text-muted mb-4">Top action items</p>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-score-poor/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <svg className="w-3.5 h-3.5 text-score-poor" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="font-medium">Add your business hours</p>
+                      <p className="text-sm text-text-muted">Customers can&apos;t see when you&apos;re open. This is costing you calls.</p>
+                    </div>
                   </div>
-                  <div>
-                    <div className="font-semibold text-primary">Sarah T.</div>
-                    <div className="text-sm text-text-muted">Salon Owner, Tampa</div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-score-warning/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <svg className="w-3.5 h-3.5 text-score-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="font-medium">Respond to your reviews</p>
+                      <p className="text-sm text-text-muted">You have 12 reviews with no response. Responding builds trust.</p>
+                    </div>
                   </div>
-                </div>
-              </div>
-
-              {/* Testimonial 3 */}
-              <div className="bg-surface p-6 md:p-8 border border-border relative">
-                <div className="absolute top-4 right-4 text-accent text-4xl font-serif">&ldquo;</div>
-                <div className="mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-accent">&#9733;</span>
-                  ))}
-                </div>
-                <p className="text-foreground mb-6 leading-relaxed">
-                  I had no idea my photos were so outdated. Updated them and my listing looks professional now.
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
-                    J
-                  </div>
-                  <div>
-                    <div className="font-semibold text-primary">James P.</div>
-                    <div className="text-sm text-text-muted">Restaurant Owner, Miami</div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-score-warning/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <svg className="w-3.5 h-3.5 text-score-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="font-medium">Add more photos</p>
+                      <p className="text-sm text-text-muted">You only have 3 photos. Listings with 10+ photos get 35% more clicks.</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -252,57 +170,34 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Final CTA */}
-        <section className="px-6 py-20 md:px-12 lg:px-20 md:py-28 bg-primary text-white relative overflow-hidden">
-          {/* Decorative elements */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-2xl" />
-
-          <div className="max-w-3xl mx-auto text-center relative z-10">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl mb-6 tracking-tight">
-              Your customers are<br />
-              <span className="text-accent">searching for you.</span>
+        {/* Section 3: Final CTA */}
+        <section className="px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32">
+          <div className="max-w-2xl">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 md:mb-10 tracking-tight">
+              Check your score.
             </h2>
-            <p className="text-white/80 text-lg md:text-xl mb-10 max-w-xl mx-auto">
-              Find out what they see when they find your business on Google.
+            <div className="max-w-xl mb-4">
+              <BusinessSearch size="large" placeholder="Search your business name..." />
+            </div>
+            <p className="text-text-muted text-sm md:text-base">
+              Free. Takes 30 seconds.
             </p>
-            <button
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-accent hover:bg-accent-hover text-white font-semibold text-lg transition-colors"
-            >
-              Get Your Free Score
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </button>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="px-6 py-12 md:px-12 lg:px-20 bg-surface border-t border-border">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex flex-col gap-6 md:flex-row md:justify-between md:items-center">
-            <div className="flex items-center gap-3">
-              <Logo size="sm" showWordmark={true} />
-            </div>
-            <nav className="flex items-center gap-8 text-sm">
-              <Link href="/pricing" className="text-text-muted hover:text-primary transition-colors">
-                Pricing
-              </Link>
-              <Link href="/privacy" className="text-text-muted hover:text-primary transition-colors">
-                Privacy
-              </Link>
-              <Link href="/terms" className="text-text-muted hover:text-primary transition-colors">
-                Terms
-              </Link>
-            </nav>
+      {/* Footer - minimal */}
+      <footer className="px-6 py-8 md:px-12 md:py-10 border-t border-border">
+        <div className="flex flex-col gap-4 md:flex-row md:justify-between md:items-center">
+          <div className="flex items-center gap-4">
+            <Logo size="sm" showWordmark={false} />
+            <span className="text-sm text-text-muted">© 2025 Curb Appeal</span>
           </div>
-          <div className="mt-8 pt-8 border-t border-border text-center md:text-left">
-            <p className="text-sm text-text-muted">
-              &copy; 2025 Curb Appeal. Built for American small businesses.
-            </p>
-          </div>
+          <nav className="flex items-center gap-6 text-sm text-text-muted">
+            <Link href="/pricing" className="hover:text-foreground transition-colors">Pricing</Link>
+            <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
+            <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
+          </nav>
         </div>
       </footer>
     </div>

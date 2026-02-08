@@ -25,15 +25,15 @@ export function Logo({ size = "md", showWordmark = true, className = "" }: LogoP
         className="flex-shrink-0"
       >
         {/* Awning */}
-        <rect x="8" y="14" width="48" height="10" rx="3" fill="#1E3A5F"/>
+        <rect x="8" y="14" width="48" height="10" rx="3" fill="#1A1A1A"/>
         {/* Awning bottom edge */}
-        <rect x="8" y="22" width="48" height="4" rx="1" fill="#152A45"/>
+        <rect x="8" y="22" width="48" height="4" rx="1" fill="#0A0A0A"/>
         {/* Storefront body */}
-        <rect x="12" y="26" width="40" height="26" rx="2" fill="#1E3A5F"/>
+        <rect x="12" y="26" width="40" height="26" rx="2" fill="#1A1A1A"/>
         {/* Door */}
         <rect x="25" y="34" width="14" height="18" rx="2" fill="white"/>
         {/* Door handle */}
-        <circle cx="36" cy="44" r="1.5" fill="#1E3A5F"/>
+        <circle cx="36" cy="44" r="1.5" fill="#1A1A1A"/>
       </svg>
       {showWordmark && (
         <span className={`font-display tracking-wide ${text}`}>
@@ -55,15 +55,15 @@ export function LogoIcon({ size = 32, className = "" }: { size?: number; classNa
       className={className}
     >
       {/* Awning */}
-      <rect x="8" y="14" width="48" height="10" rx="3" fill="#1E3A5F"/>
+      <rect x="8" y="14" width="48" height="10" rx="3" fill="#1A1A1A"/>
       {/* Awning bottom edge */}
-      <rect x="8" y="22" width="48" height="4" rx="1" fill="#152A45"/>
+      <rect x="8" y="22" width="48" height="4" rx="1" fill="#0A0A0A"/>
       {/* Storefront body */}
-      <rect x="12" y="26" width="40" height="26" rx="2" fill="#1E3A5F"/>
+      <rect x="12" y="26" width="40" height="26" rx="2" fill="#1A1A1A"/>
       {/* Door */}
       <rect x="25" y="34" width="14" height="18" rx="2" fill="white"/>
       {/* Door handle */}
-      <circle cx="36" cy="44" r="1.5" fill="#1E3A5F"/>
+      <circle cx="36" cy="44" r="1.5" fill="#1A1A1A"/>
     </svg>
   );
 }

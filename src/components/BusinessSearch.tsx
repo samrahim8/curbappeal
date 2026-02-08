@@ -163,8 +163,8 @@ export function BusinessSearch({
             w-full ${sizeClasses[size]} pl-12 pr-4
             bg-white border border-border
             text-foreground placeholder:text-text-light
-            focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary
-            shadow-md hover:shadow-lg transition-all
+            focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20
+            shadow-sm transition-all
           `}
         />
 
