@@ -1,0 +1,14 @@
+<svg width="140" height="96" viewBox="0 0 140 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icon: Awning -->
+  <rect x="38" y="10" width="64" height="14" rx="4" fill="#1A1A1A"/>
+  <!-- Icon: Awning bottom edge -->
+  <rect x="38" y="22" width="64" height="5" rx="1" fill="#333333"/>
+  <!-- Icon: Storefront body -->
+  <rect x="44" y="27" width="52" height="32" rx="3" fill="#1A1A1A"/>
+  <!-- Icon: Door -->
+  <rect x="59" y="37" width="22" height="22" rx="2.5" fill="white"/>
+  <!-- Icon: Door handle -->
+  <circle cx="76" cy="49" r="2" fill="#1A1A1A"/>
+  <!-- Wordmark -->
+  <text x="70" y="82" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="14" font-weight="600" letter-spacing="0.15em" fill="#1A1A1A">CURB APPEAL</text>
+</svg>
