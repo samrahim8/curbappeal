@@ -10,7 +10,7 @@ export default function Home() {
       {/* Hero - Full viewport */}
       <div className="h-[100dvh] flex flex-col">
         {/* Navigation */}
-        <header className="flex items-center justify-between px-5 py-4 md:px-12 md:py-6 flex-shrink-0">
+        <header className="flex items-center justify-between px-5 py-3 md:px-12 md:py-6 flex-shrink-0">
           <Logo size="sm" />
           <nav className="flex items-center gap-4 text-sm text-text-muted">
             <Link href="/pricing" className="hover:text-foreground transition-colors hidden sm:block">
@@ -22,19 +22,22 @@ export default function Home() {
           </nav>
         </header>
 
-        {/* Hero content - fills remaining space */}
-        <section className="flex-1 flex flex-col justify-between px-5 pt-4 pb-8 md:px-12 md:pb-16 lg:px-20">
-          {/* Headline - takes up most of the space */}
-          <h1 className="text-[2.5rem] leading-[1.05] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight">
-            Is Google<br />
-            helping or<br />
-            hurting your<br />
-            business?
+        {/* Hero content */}
+        <section className="flex-1 flex flex-col px-5 pb-6 md:px-12 md:pb-16 lg:px-20">
+          {/* Headline - MASSIVE, fills the space */}
+          <h1 className="text-[3.25rem] leading-[1] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[9rem] font-bold tracking-[-0.02em] flex-1 flex items-center">
+            <span>
+              Is Google helping
+              <br />
+              or hurting
+              <br />
+              your business?
+            </span>
           </h1>
 
-          {/* Bottom section: search + trust */}
-          <div>
-            <div className="w-full max-w-xl mb-3">
+          {/* Bottom: search + trust */}
+          <div className="flex-shrink-0">
+            <div className="w-full max-w-xl mb-2">
               <BusinessSearch size="large" placeholder="Search your business name..." />
             </div>
             <p className="text-text-muted text-sm">
