@@ -10,88 +10,110 @@ interface AuditResultsProps {
   audit: AuditResult;
 }
 
-function SeverityBadge({ severity }: { severity: ActionItem["severity"] }) {
-  const config = {
-    critical: { bg: "bg-red-500/10", text: "text-red-600", label: "Fix now" },
-    warning: { bg: "bg-amber-500/10", text: "text-amber-600", label: "Important" },
-    suggestion: { bg: "bg-accent/10", text: "text-accent", label: "Nice to have" },
-  };
-
-  const { bg, text, label } = config[severity];
-
-  return (
-    <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${bg} ${text}`}>
-      {label}
-    </span>
-  );
-}
-
-function ActionItemCard({ item }: { item: ActionItem }) {
+function ActionItemCard({ item, variant = "priority" }: { item: ActionItem; variant?: "priority" | "suggestion" }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const categoryIcons: Record<string, React.ReactNode> = {
-    completeness: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-      </svg>
-    ),
-    photos: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-      </svg>
-    ),
-    reviews: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-      </svg>
-    ),
-    responses: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-      </svg>
-    ),
-    activity: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-      </svg>
-    ),
+  const severityConfig = {
+    critical: {
+      gradient: "from-red-500/20 via-red-500/5 to-transparent",
+      border: "border-red-500/20",
+      badge: "bg-red-500 text-white",
+      label: "Fix now"
+    },
+    warning: {
+      gradient: "from-amber-500/20 via-amber-500/5 to-transparent",
+      border: "border-amber-500/20",
+      badge: "bg-amber-500 text-white",
+      label: "Important"
+    },
+    suggestion: {
+      gradient: "from-accent/10 via-accent/5 to-transparent",
+      border: "border-accent/20",
+      badge: "bg-accent/10 text-accent",
+      label: "Suggestion"
+    },
+  };
+
+  const config = severityConfig[item.severity];
+
+  const categoryLabels: Record<string, string> = {
+    completeness: "Profile",
+    photos: "Photos",
+    reviews: "Reviews",
+    responses: "Responses",
+    activity: "Activity",
   };
 
   return (
-    <div className="bg-surface rounded-2xl p-6 shadow-card">
-      <div className="flex items-start gap-4">
-        <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent shrink-0">
-          {categoryIcons[item.category] || categoryIcons.completeness}
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-2">
-            <SeverityBadge severity={item.severity} />
+    <div
+      className={`group relative bg-surface rounded-3xl overflow-hidden transition-all duration-300 ${
+        variant === "priority" ? "shadow-card hover:shadow-lg" : "border border-border-light hover:border-border"
+      }`}
+    >
+      {/* Gradient accent */}
+      {variant === "priority" && (
+        <div className={`absolute inset-0 bg-gradient-to-r ${config.gradient} pointer-events-none`} />
+      )}
+
+      <div className="relative p-6 md:p-8">
+        {/* Header row */}
+        <div className="flex items-start justify-between gap-4 mb-4">
+          <div className="flex items-center gap-3">
+            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${config.badge}`}>
+              {config.label}
+            </span>
+            <span className="text-xs text-text-muted uppercase tracking-wider">
+              {categoryLabels[item.category] || "Profile"}
+            </span>
           </div>
-          <h3 className="font-display text-lg text-text mb-1">{item.title}</h3>
-          <p className="text-text-secondary text-sm">{item.description}</p>
-
-          {isExpanded && (
-            <div className="mt-4 p-4 bg-background rounded-xl">
-              <p className="text-sm font-medium text-text mb-2">How to fix:</p>
-              <p className="text-sm text-text-secondary">{item.howToFix}</p>
-            </div>
-          )}
-
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:text-accent-light transition-colors"
-          >
-            {isExpanded ? "Hide details" : "How to fix"}
-            <svg
-              className={`w-4 h-4 transition-transform ${isExpanded ? "rotate-180" : ""}`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
         </div>
+
+        {/* Title */}
+        <h3 className="font-display text-xl md:text-2xl text-text mb-3 leading-tight">
+          {item.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-text-secondary leading-relaxed mb-6">
+          {item.description}
+        </p>
+
+        {/* Expandable fix section */}
+        <div className={`overflow-hidden transition-all duration-300 ${isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
+          <div className="pb-6">
+            <div className="bg-accent/5 rounded-2xl p-5 border border-accent/10">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center">
+                  <svg className="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <span className="text-sm font-semibold text-accent">How to fix</span>
+              </div>
+              <p className="text-text-secondary text-sm leading-relaxed">{item.howToFix}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Action button */}
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
+            isExpanded
+              ? "bg-accent text-white"
+              : "bg-accent/10 text-accent hover:bg-accent/20"
+          }`}
+        >
+          {isExpanded ? "Got it" : "Show me how"}
+          <svg
+            className={`w-4 h-4 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
       </div>
     </div>
   );
@@ -146,6 +168,7 @@ function BreakdownCard({
 
 export function AuditResults({ audit }: AuditResultsProps) {
   const [copied, setCopied] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   const shareUrl = typeof window !== "undefined"
     ? window.location.href
@@ -240,7 +263,7 @@ export function AuditResults({ audit }: AuditResultsProps) {
       {/* Action Items */}
       <section className="px-5 md:px-8 py-12 md:py-16">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-10">
+          <div className="text-center mb-12">
             <p className="text-sm text-text-muted mb-2 tracking-wide">What to fix</p>
             <h2 className="font-display text-2xl md:text-3xl text-text">
               {priorityItems.length > 0
@@ -251,32 +274,61 @@ export function AuditResults({ audit }: AuditResultsProps) {
           </div>
 
           {priorityItems.length === 0 ? (
-            <div className="bg-green-500/10 rounded-2xl p-8 text-center">
-              <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
+            <div className="relative bg-gradient-to-br from-green-500/10 via-green-500/5 to-transparent rounded-3xl p-10 text-center overflow-hidden">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-green-500/10 via-transparent to-transparent" />
+              <div className="relative">
+                <div className="w-16 h-16 bg-green-500/20 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <p className="font-display text-xl text-text mb-2">No critical issues found!</p>
+                <p className="text-text-secondary max-w-md mx-auto">Your profile is in good shape. Check the suggestions below to go from good to great.</p>
               </div>
-              <p className="font-display text-lg text-text mb-1">No critical issues found!</p>
-              <p className="text-sm text-text-secondary">Your profile is in good shape. Check the suggestions below to go from good to great.</p>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-6">
               {priorityItems.map((item) => (
-                <ActionItemCard key={`${item.category}-${item.title}`} item={item} />
+                <ActionItemCard key={`${item.category}-${item.title}`} item={item} variant="priority" />
               ))}
             </div>
           )}
 
+          {/* Suggestions Dropdown */}
           {suggestions.length > 0 && (
-            <div className="mt-10">
-              <p className="text-sm text-text-muted mb-4 text-center">
-                {suggestions.length} suggestion{suggestions.length !== 1 ? "s" : ""} to consider
-              </p>
-              <div className="space-y-4">
-                {suggestions.map((item) => (
-                  <ActionItemCard key={`${item.category}-${item.title}`} item={item} />
-                ))}
+            <div className="mt-12">
+              <button
+                onClick={() => setShowSuggestions(!showSuggestions)}
+                className="w-full group"
+              >
+                <div className="flex items-center justify-between p-5 bg-surface rounded-2xl border border-border-light hover:border-border transition-colors">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+                      <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                      </svg>
+                    </div>
+                    <div className="text-left">
+                      <p className="font-medium text-text">
+                        {suggestions.length} suggestion{suggestions.length !== 1 ? "s" : ""} to consider
+                      </p>
+                      <p className="text-sm text-text-muted">Optional improvements to boost your score</p>
+                    </div>
+                  </div>
+                  <div className={`w-8 h-8 rounded-full bg-background flex items-center justify-center transition-transform duration-200 ${showSuggestions ? "rotate-180" : ""}`}>
+                    <svg className="w-4 h-4 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+              </button>
+
+              <div className={`overflow-hidden transition-all duration-300 ${showSuggestions ? "max-h-[2000px] opacity-100 mt-4" : "max-h-0 opacity-0"}`}>
+                <div className="space-y-4">
+                  {suggestions.map((item) => (
+                    <ActionItemCard key={`${item.category}-${item.title}`} item={item} variant="suggestion" />
+                  ))}
+                </div>
               </div>
             </div>
           )}
