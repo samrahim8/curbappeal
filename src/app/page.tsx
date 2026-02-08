@@ -9,11 +9,10 @@ export default function Home() {
     <div className="bg-background min-h-screen">
       {/* Hero - Full viewport, nothing competes */}
       <div className="min-h-[100dvh] flex flex-col">
-        {/* Navigation - understated */}
-        <header className="flex items-center justify-between px-6 py-6 md:px-12 md:py-8">
-          <Logo size="sm" className="md:hidden" />
-          <Logo size="md" className="hidden md:flex" />
-          <nav className="flex items-center gap-6 text-sm text-text-muted">
+        {/* Navigation - minimal */}
+        <header className="flex items-center justify-between px-5 py-4 sm:px-6 sm:py-6 md:px-12 md:py-8">
+          <Logo size="sm" />
+          <nav className="flex items-center gap-5 text-sm text-text-muted">
             <Link href="/pricing" className="hover:text-foreground transition-colors hidden sm:block">
               Pricing
             </Link>
@@ -23,21 +22,21 @@ export default function Home() {
           </nav>
         </header>
 
-        {/* Hero content - headline dominates */}
-        <section className="flex-1 flex flex-col justify-center md:justify-end px-6 pb-8 md:px-12 md:pb-20 lg:px-20 lg:pb-24">
-          {/* Headline - massive, planted at bottom-left on desktop, centered on mobile */}
-          <h1 className="text-[2.5rem] leading-[1] sm:text-5xl md:text-7xl lg:text-[6rem] xl:text-[7rem] font-bold tracking-tight max-w-5xl mb-6 md:mb-10">
+        {/* Hero content - headline COMMANDS */}
+        <section className="flex-1 flex flex-col justify-end px-5 pb-6 sm:px-6 md:px-12 md:pb-20 lg:px-20 lg:pb-24">
+          {/* Headline - massive and commanding */}
+          <h1 className="text-[2.75rem] leading-[0.95] xs:text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] xl:text-[7rem] font-bold tracking-[-0.02em] max-w-5xl mb-8 sm:mb-10">
             Is Google helping or hurting your business?
           </h1>
 
           {/* Search bar */}
-          <div className="w-full max-w-xl mb-4">
+          <div className="w-full max-w-xl mb-3">
             <BusinessSearch size="large" placeholder="Search your business name..." />
           </div>
 
           {/* Single trust line */}
           <p className="text-text-muted text-sm">
-            Free Google Business Profile audit. 30 seconds. No signup.
+            Free audit. 30 seconds. No signup.
           </p>
         </section>
       </div>

@@ -126,8 +126,8 @@ export function BusinessSearch({
   };
 
   const sizeClasses = {
-    large: "h-[60px] text-lg px-6",
-    default: "h-14 text-base px-5",
+    large: "h-14 sm:h-[60px] text-base sm:text-lg px-5 sm:px-6",
+    default: "h-12 sm:h-14 text-base px-4 sm:px-5",
   };
 
   return (
