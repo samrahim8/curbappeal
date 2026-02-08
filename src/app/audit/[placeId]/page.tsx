@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { AuditResult } from "@/lib/scoring";
+import { calculateAuditScore, PlaceDetails, AuditResult } from "@/lib/scoring";
 import { AuditResults } from "./AuditResults";
 
 interface AuditPageProps {
@@ -8,19 +8,63 @@ interface AuditPageProps {
 }
 
 async function getAuditData(placeId: string): Promise<AuditResult | null> {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  const apiKey = process.env.GOOGLE_PLACES_API_KEY;
+
+  if (!apiKey) {
+    console.error("GOOGLE_PLACES_API_KEY not configured");
+    return null;
+  }
 
   try {
-    const response = await fetch(
-      `${baseUrl}/api/audit?placeId=${encodeURIComponent(placeId)}`,
-      { cache: "no-store" }
-    );
+    const fields = [
+      "place_id",
+      "name",
+      "formatted_address",
+      "formatted_phone_number",
+      "international_phone_number",
+      "website",
+      "opening_hours",
+      "business_status",
+      "url",
+      "types",
+      "price_level",
+      "editorial_summary",
+      "photos",
+      "rating",
+      "user_ratings_total",
+      "reviews",
+      "delivery",
+      "dine_in",
+      "takeout",
+      "curbside_pickup",
+      "reservable",
+      "serves_beer",
+      "serves_wine",
+      "serves_breakfast",
+      "serves_brunch",
+      "serves_lunch",
+      "serves_dinner",
+      "serves_vegetarian_food",
+      "wheelchair_accessible_entrance",
+    ].join(",");
 
-    if (!response.ok) {
+    const url = new URL(
+      "https://maps.googleapis.com/maps/api/place/details/json"
+    );
+    url.searchParams.set("place_id", placeId);
+    url.searchParams.set("fields", fields);
+    url.searchParams.set("key", apiKey);
+
+    const response = await fetch(url.toString(), { cache: "no-store" });
+    const data = await response.json();
+
+    if (data.status !== "OK") {
+      console.error("Places API error:", data.status, data.error_message);
       return null;
     }
 
-    return response.json();
+    const placeDetails: PlaceDetails = data.result;
+    return calculateAuditScore(placeDetails);
   } catch (error) {
     console.error("Failed to fetch audit:", error);
     return null;

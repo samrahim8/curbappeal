@@ -117,8 +117,8 @@ export interface AuditResult {
   reviewCount: number;
   photoCount: number;
   totalScore: number;
-  scoreLabel: "Needs work" | "Getting there" | "Good" | "Excellent";
-  scoreColor: "red" | "amber" | "green" | "bright-green";
+  scoreLabel: "Invisible" | "At Risk" | "Average" | "Strong" | "Dominant";
+  scoreColor: "red" | "orange" | "amber" | "green" | "bright-green";
   breakdown: ScoreBreakdown;
   actionItems: ActionItem[];
   summary: string;
@@ -532,35 +532,40 @@ function generateActionItems(breakdown: ScoreBreakdown, place: PlaceDetails): Ac
   return items;
 }
 
-function getScoreLabel(score: number): "Needs work" | "Getting there" | "Good" | "Excellent" {
-  if (score <= 40) return "Needs work";
-  if (score <= 60) return "Getting there";
-  if (score <= 80) return "Good";
-  return "Excellent";
+function getScoreLabel(score: number): "Invisible" | "At Risk" | "Average" | "Strong" | "Dominant" {
+  if (score < 40) return "Invisible";
+  if (score < 60) return "At Risk";
+  if (score < 75) return "Average";
+  if (score < 90) return "Strong";
+  return "Dominant";
 }
 
-function getScoreColor(score: number): "red" | "amber" | "green" | "bright-green" {
-  if (score <= 40) return "red";
-  if (score <= 60) return "amber";
-  if (score <= 80) return "green";
+function getScoreColor(score: number): "red" | "orange" | "amber" | "green" | "bright-green" {
+  if (score < 40) return "red";
+  if (score < 60) return "orange";
+  if (score < 75) return "amber";
+  if (score < 90) return "green";
   return "bright-green";
 }
 
 function generateSummary(score: number, actionItems: ActionItem[]): string {
   const criticalCount = actionItems.filter(i => i.severity === "critical").length;
 
-  if (score <= 40) {
+  if (score < 40) {
     return criticalCount > 0
-      ? `Your Google presence needs attention. You have ${criticalCount} critical issue${criticalCount > 1 ? "s" : ""} that could be costing you customers.`
-      : "Your Google presence is turning away potential customers. A few quick fixes could make a big difference.";
+      ? `Your Google presence is invisible to customers. You have ${criticalCount} critical issue${criticalCount > 1 ? "s" : ""} that need immediate attention.`
+      : "Your Google presence is invisible to customers. A few quick fixes could change everything.";
   }
-  if (score <= 60) {
-    return "You're on the right track, but there's room to improve. A few updates could help you stand out from competitors.";
+  if (score < 60) {
+    return "Your Google presence is at risk. Competitors are likely outranking you in local search.";
   }
-  if (score <= 80) {
-    return "Your Google presence is solid! A few tweaks could push you to the top of local search results.";
+  if (score < 75) {
+    return "Your Google presence is average. A few updates could help you stand out from competitors.";
   }
-  return "Excellent! Your Google presence is helping you win customers. Keep it updated to maintain your edge.";
+  if (score < 90) {
+    return "Your Google presence is strong. A few tweaks could push you to the top of local search.";
+  }
+  return "Your Google presence is dominant. You're outperforming most local competitors.";
 }
 
 export function calculateAuditScore(place: PlaceDetails): AuditResult {
