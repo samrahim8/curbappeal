@@ -334,7 +334,7 @@ export function AuditResults({ audit }: AuditResultsProps) {
   );
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-5 md:px-8 py-4 bg-background/80 backdrop-blur-md border-b border-border-light">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
@@ -363,7 +363,7 @@ export function AuditResults({ audit }: AuditResultsProps) {
       </nav>
 
       {/* Hero - Centered score */}
-      <section className="pt-24 pb-12 md:pt-32 md:pb-16 px-5 md:px-8">
+      <section className="pt-20 pb-8 md:pt-24 md:pb-10 px-5 md:px-8">
         <div className="max-w-3xl mx-auto text-center">
           <div className="flex justify-center mb-6">
             <ScoreCircle score={audit.totalScore} label={audit.scoreLabel} />
