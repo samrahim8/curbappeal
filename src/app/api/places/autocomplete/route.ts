@@ -20,6 +20,8 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  const sessionToken = searchParams.get("sessiontoken");
+
   try {
     // Using the Places API (New) Text Search for better business results
     const url = new URL(
@@ -28,6 +30,9 @@ export async function GET(request: NextRequest) {
     url.searchParams.set("input", input);
     url.searchParams.set("types", "establishment");
     url.searchParams.set("key", apiKey);
+    if (sessionToken) {
+      url.searchParams.set("sessiontoken", sessionToken);
+    }
 
     const response = await fetch(url.toString());
     const data = await response.json();

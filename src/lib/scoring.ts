@@ -375,9 +375,9 @@ function generateActionItems(breakdown: ScoreBreakdown, place: PlaceDetails): Ac
     items.push({
       category: "completeness",
       severity: "warning",
-      title: "Add a business description",
-      description: "Your profile is missing a description. This is prime real estate to tell customers what makes you special.",
-      howToFix: "In your Google Business Profile, click 'Edit profile', then 'Description'. Write 2-3 sentences about what you do and why customers choose you.",
+      title: "Write a custom business description",
+      description: "We couldn't detect a strong description for your business. Make sure you've written a compelling 'From the business' description — this is your chance to tell customers what makes you special in your own words.",
+      howToFix: "In your Google Business Profile, click 'Edit profile', then 'Description'. Write 2-3 sentences about what you do, what makes you different, and why customers choose you.",
     });
   }
   if (!details.hasPriceLevel) {

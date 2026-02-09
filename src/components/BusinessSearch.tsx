@@ -12,6 +12,11 @@ interface PlacePrediction {
   };
 }
 
+// Generate a session token for Google Places API (improves response times)
+function generateSessionToken() {
+  return crypto.randomUUID();
+}
+
 export function BusinessSearch() {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -22,6 +27,8 @@ export function BusinessSearch() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const abortControllerRef = useRef<AbortController | null>(null);
+  const debounceRef = useRef<NodeJS.Timeout | null>(null);
+  const sessionTokenRef = useRef<string>(generateSessionToken());
 
   const fetchPredictions = useCallback(async (input: string) => {
     // Cancel any in-flight request
@@ -29,7 +36,7 @@ export function BusinessSearch() {
       abortControllerRef.current.abort();
     }
 
-    if (!input.trim() || input.length < 1) {
+    if (!input.trim() || input.length < 2) {
       setPredictions([]);
       setShowDropdown(false);
       return;
@@ -40,7 +47,7 @@ export function BusinessSearch() {
 
     try {
       const response = await fetch(
-        `/api/places/autocomplete?input=${encodeURIComponent(input)}`,
+        `/api/places/autocomplete?input=${encodeURIComponent(input)}&sessiontoken=${sessionTokenRef.current}`,
         { signal: abortControllerRef.current.signal }
       );
       const data = await response.json();
@@ -61,8 +68,19 @@ export function BusinessSearch() {
   }, []);
 
   useEffect(() => {
-    // Fetch immediately - AbortController handles cancellation of stale requests
-    fetchPredictions(query);
+    // Tiny debounce (50ms) - imperceptible but reduces API hammering
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current);
+    }
+    debounceRef.current = setTimeout(() => {
+      fetchPredictions(query);
+    }, 50);
+
+    return () => {
+      if (debounceRef.current) {
+        clearTimeout(debounceRef.current);
+      }
+    };
   }, [query, fetchPredictions]);
 
   useEffect(() => {
@@ -78,6 +96,8 @@ export function BusinessSearch() {
   const handleSelect = (prediction: PlacePrediction) => {
     setQuery(prediction.structured_formatting.main_text);
     setShowDropdown(false);
+    // Reset session token for next search session
+    sessionTokenRef.current = generateSessionToken();
     router.push(`/audit/${prediction.place_id}`);
   };
 
