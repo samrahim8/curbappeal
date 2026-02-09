@@ -54,7 +54,7 @@ export default function Home() {
 
           {/* Main content */}
           <div className="text-center">
-            <h1 className="font-display text-[38px] leading-[1.08] tracking-tight text-text mb-4">
+            <h1 className="font-display text-[52px] leading-[1.02] tracking-tight text-text mb-5">
               What's your curb appeal on Google?
             </h1>
 
