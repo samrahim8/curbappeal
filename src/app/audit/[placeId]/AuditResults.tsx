@@ -16,25 +16,53 @@ function ActionItemCard({ item, variant = "priority" }: { item: ActionItem; vari
   const severityConfig = {
     critical: {
       gradient: "from-red-500/20 via-red-500/5 to-transparent",
-      border: "border-red-500/20",
       badge: "bg-red-500 text-white",
-      label: "Fix now"
+      label: "Fix now",
+      accent: "border-l-red-500"
     },
     warning: {
       gradient: "from-amber-500/20 via-amber-500/5 to-transparent",
-      border: "border-amber-500/20",
       badge: "bg-amber-500 text-white",
-      label: "Important"
+      label: "Important",
+      accent: "border-l-amber-500"
     },
     suggestion: {
-      gradient: "from-accent/10 via-accent/5 to-transparent",
-      border: "border-accent/20",
-      badge: "bg-accent/10 text-accent",
-      label: "Suggestion"
+      gradient: "from-blue-500/5 via-transparent to-transparent",
+      badge: "bg-blue-500/10 text-blue-600",
+      label: "Bonus",
+      accent: "border-l-blue-500"
     },
   };
 
   const config = severityConfig[item.severity];
+
+  const categoryIcons: Record<string, React.ReactNode> = {
+    completeness: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+    ),
+    photos: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+    ),
+    reviews: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+      </svg>
+    ),
+    responses: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+      </svg>
+    ),
+    activity: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+      </svg>
+    ),
+  };
 
   const categoryLabels: Record<string, string> = {
     completeness: "Profile",
@@ -44,76 +72,143 @@ function ActionItemCard({ item, variant = "priority" }: { item: ActionItem; vari
     activity: "Activity",
   };
 
-  return (
-    <div
-      className={`group relative bg-surface rounded-3xl overflow-hidden transition-all duration-300 ${
-        variant === "priority" ? "shadow-card hover:shadow-lg" : "border border-border-light hover:border-border"
-      }`}
-    >
-      {/* Gradient accent */}
-      {variant === "priority" && (
+  // Priority card layout
+  if (variant === "priority") {
+    return (
+      <div className="group relative bg-surface rounded-3xl overflow-hidden shadow-card hover:shadow-lg transition-all duration-300">
+        {/* Gradient accent */}
         <div className={`absolute inset-0 bg-gradient-to-r ${config.gradient} pointer-events-none`} />
-      )}
 
-      <div className="relative p-6 md:p-8">
-        {/* Header row */}
-        <div className="flex items-start justify-between gap-4 mb-4">
-          <div className="flex items-center gap-3">
-            <span className={`px-3 py-1 rounded-full text-xs font-semibold ${config.badge}`}>
-              {config.label}
-            </span>
-            <span className="text-xs text-text-muted uppercase tracking-wider">
-              {categoryLabels[item.category] || "Profile"}
-            </span>
-          </div>
-        </div>
-
-        {/* Title */}
-        <h3 className="font-display text-xl md:text-2xl text-text mb-3 leading-tight">
-          {item.title}
-        </h3>
-
-        {/* Description */}
-        <p className="text-text-secondary leading-relaxed mb-6">
-          {item.description}
-        </p>
-
-        {/* Expandable fix section */}
-        <div className={`overflow-hidden transition-all duration-300 ${isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
-          <div className="pb-6">
-            <div className="bg-accent/5 rounded-2xl p-5 border border-accent/10">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center">
-                  <svg className="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <span className="text-sm font-semibold text-accent">How to fix</span>
-              </div>
-              <p className="text-text-secondary text-sm leading-relaxed">{item.howToFix}</p>
+        <div className="relative p-6 md:p-8">
+          {/* Header row */}
+          <div className="flex items-start justify-between gap-4 mb-4">
+            <div className="flex items-center gap-3">
+              <span className={`px-3 py-1 rounded-full text-xs font-semibold ${config.badge}`}>
+                {config.label}
+              </span>
+              <span className="text-xs text-text-muted uppercase tracking-wider">
+                {categoryLabels[item.category] || "Profile"}
+              </span>
             </div>
           </div>
-        </div>
 
-        {/* Action button */}
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
-            isExpanded
-              ? "bg-accent text-white"
-              : "bg-accent/10 text-accent hover:bg-accent/20"
-          }`}
-        >
-          {isExpanded ? "Got it" : "Show me how"}
-          <svg
-            className={`w-4 h-4 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+          {/* Title */}
+          <h3 className="font-display text-xl md:text-2xl text-text mb-3 leading-tight">
+            {item.title}
+          </h3>
+
+          {/* Description */}
+          <p className="text-text-secondary leading-relaxed mb-6">
+            {item.description}
+          </p>
+
+          {/* Expandable fix section */}
+          <div className={`overflow-hidden transition-all duration-300 ${isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
+            <div className="pb-6">
+              <div className="bg-accent/5 rounded-2xl p-5 border border-accent/10">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center">
+                    <svg className="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <span className="text-sm font-semibold text-accent">How to fix</span>
+                </div>
+                <p className="text-text-secondary text-sm leading-relaxed">{item.howToFix}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Action button */}
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 ${
+              isExpanded
+                ? "bg-accent text-white"
+                : "bg-accent/10 text-accent hover:bg-accent/20"
+            }`}
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
+            {isExpanded ? "Got it" : "Show me how"}
+            <svg
+              className={`w-4 h-4 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Suggestion card layout - more compact, left accent border
+  return (
+    <div className={`group relative bg-surface rounded-2xl overflow-hidden border-l-4 ${config.accent} shadow-sm hover:shadow-md transition-all duration-300`}>
+      <div className={`absolute inset-0 bg-gradient-to-r ${config.gradient} pointer-events-none`} />
+
+      <div className="relative p-5 md:p-6">
+        <div className="flex gap-4">
+          {/* Icon */}
+          <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-600 shrink-0">
+            {categoryIcons[item.category] || categoryIcons.completeness}
+          </div>
+
+          <div className="flex-1 min-w-0">
+            {/* Header */}
+            <div className="flex items-center gap-2 mb-1">
+              <span className={`px-2 py-0.5 rounded text-xs font-medium ${config.badge}`}>
+                {config.label}
+              </span>
+            </div>
+
+            {/* Title */}
+            <h3 className="font-display text-lg text-text mb-2 leading-snug">
+              {item.title}
+            </h3>
+
+            {/* Description */}
+            <p className="text-text-secondary text-sm leading-relaxed mb-4">
+              {item.description}
+            </p>
+
+            {/* Expandable fix section */}
+            <div className={`overflow-hidden transition-all duration-300 ${isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
+              <div className="pb-4">
+                <div className="bg-blue-500/5 rounded-xl p-4 border border-blue-500/10">
+                  <div className="flex items-center gap-2 mb-2">
+                    <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    <span className="text-sm font-medium text-blue-600">Quick tip</span>
+                  </div>
+                  <p className="text-text-secondary text-sm leading-relaxed">{item.howToFix}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Action button */}
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className={`inline-flex items-center gap-1.5 text-sm font-medium transition-all duration-200 ${
+                isExpanded
+                  ? "text-blue-600"
+                  : "text-text-muted hover:text-blue-600"
+              }`}
+            >
+              {isExpanded ? "Hide tip" : "Show tip"}
+              <svg
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
