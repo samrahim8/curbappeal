@@ -47,44 +47,60 @@ export default function Home() {
       {/* Hero - Mobile: full screen takeover, Desktop: standard layout */}
       <section className="md:px-8 md:pt-36 md:pb-24">
         {/* Mobile Hero - Positioned in upper area like Craft */}
-        <div className="md:hidden min-h-[100dvh] flex flex-col px-5">
+        <div className="md:hidden min-h-[100dvh] flex flex-col px-5 overflow-hidden">
           {/* Spacer to push content to upper third */}
-          <div className="h-28" />
+          <div className="h-24" />
 
           {/* Main content */}
           <div className="text-center">
-            <h1 className="font-display text-[42px] leading-[1.08] tracking-tight text-text mb-5">
+            <h1 className="font-display text-[38px] leading-[1.08] tracking-tight text-text mb-4">
               What's your curb appeal on Google?
             </h1>
 
-            <p className="text-lg text-text-secondary mb-10 px-2">
+            <p className="text-base text-text-secondary mb-6 px-2">
               Score your business profile in 10 seconds.
             </p>
 
             <BusinessSearch />
           </div>
 
-          {/* Spacer + trust signals */}
-          <div className="flex-1" />
-          <div className="flex items-center justify-center gap-6 text-sm text-text-muted pb-8">
-            <span className="flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-              </svg>
-              Free
-            </span>
-            <span className="flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-              </svg>
-              No signup
-            </span>
-            <span className="flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-              </svg>
-              10 sec
-            </span>
+          {/* Audit mockup preview */}
+          <div className="flex-1 flex items-end justify-center pt-8 pb-4">
+            <div className="relative w-full max-w-[320px]">
+              {/* Phone frame */}
+              <div className="bg-surface rounded-[2rem] shadow-2xl border border-border-light p-3 pb-0 overflow-hidden">
+                {/* Screen content */}
+                <div className="bg-gradient-to-b from-[#E8F4FC] to-[#F5F3ED] rounded-[1.25rem] pt-6 pb-8 px-4">
+                  {/* Score circle */}
+                  <div className="flex justify-center mb-4">
+                    <div className="relative w-20 h-20">
+                      <svg className="w-20 h-20 -rotate-90" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="42" fill="none" stroke="#E5E2DB" strokeWidth="8" />
+                        <circle cx="50" cy="50" r="42" fill="none" stroke="#22C55E" strokeWidth="8" strokeLinecap="round" strokeDasharray="264" strokeDashoffset="66" />
+                      </svg>
+                      <div className="absolute inset-0 flex flex-col items-center justify-center">
+                        <span className="text-2xl font-display text-text">73</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Business name */}
+                  <h3 className="font-display text-base text-text text-center mb-1">Blue Bottle Coffee</h3>
+                  <p className="text-xs text-text-muted text-center mb-4">San Francisco, CA</p>
+
+                  {/* Action item preview */}
+                  <div className="bg-surface rounded-xl p-3 shadow-sm">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-500 text-white">Important</span>
+                    </div>
+                    <p className="text-xs font-medium text-text">Add more photos to your profile</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Fade out at bottom */}
+              <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#F5F3ED] to-transparent pointer-events-none" />
+            </div>
           </div>
         </div>
 
