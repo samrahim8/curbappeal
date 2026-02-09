@@ -557,7 +557,7 @@ function generateSummary(score: number, actionItems: ActionItem[]): string {
       : "Your Google presence is invisible to customers. A few quick fixes could change everything.";
   }
   if (score < 60) {
-    return "Your Google presence is at risk. Competitors are likely outranking you in local search.";
+    return "Your Google presence needs work. Competitors are likely outranking you in local search.";
   }
   if (score < 70) {
     return "Your Google presence is average. A few updates could help you stand out from competitors.";
