@@ -76,120 +76,120 @@ export default function PricingPage() {
 
       {/* Pricing Cards */}
       <section className="px-5 md:px-8 pb-24">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+        <div className="max-w-3xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-5 md:gap-6">
             {/* Free Tier */}
-            <div className="bg-surface rounded-3xl p-8 shadow-card">
-              <div className="mb-8">
-                <h2 className="font-display text-2xl text-text mb-2">Free Audit</h2>
+            <div className="bg-surface rounded-2xl p-6 shadow-card">
+              <div className="mb-5">
+                <h2 className="font-display text-xl text-text mb-1">Free Audit</h2>
                 <p className="text-text-secondary text-sm">
                   See where you stand in 10 seconds
                 </p>
               </div>
 
-              <div className="flex items-baseline gap-1 mb-8">
-                <span className="text-5xl font-display text-text">$0</span>
+              <div className="flex items-baseline gap-1 mb-5">
+                <span className="text-4xl font-display text-text">$0</span>
               </div>
 
               <Link
                 href="/"
-                className="block w-full py-4 px-6 text-center bg-accent/10 text-accent rounded-full font-medium hover:bg-accent/20 transition-colors mb-8"
+                className="block w-full py-3 px-5 text-center bg-accent/10 text-accent rounded-full font-medium hover:bg-accent/20 transition-colors mb-6"
               >
                 Get your free score
               </Link>
 
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <CheckIcon className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                  <span className="text-text-secondary">Instant score out of 100</span>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-2.5">
+                  <CheckIcon className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                  <span className="text-sm text-text-secondary">Instant score out of 100</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <CheckIcon className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                  <span className="text-text-secondary">See exactly what&apos;s broken</span>
+                <li className="flex items-start gap-2.5">
+                  <CheckIcon className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                  <span className="text-sm text-text-secondary">See exactly what&apos;s broken</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <CheckIcon className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                  <span className="text-text-secondary">Step-by-step fix instructions</span>
+                <li className="flex items-start gap-2.5">
+                  <CheckIcon className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                  <span className="text-sm text-text-secondary">Step-by-step fix instructions</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <CheckIcon className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                  <span className="text-text-secondary">Shareable results link</span>
+                <li className="flex items-start gap-2.5">
+                  <CheckIcon className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                  <span className="text-sm text-text-secondary">Shareable results link</span>
                 </li>
               </ul>
             </div>
 
             {/* Pro Tier */}
-            <div className="relative bg-accent text-white rounded-3xl p-8 shadow-card overflow-hidden">
+            <div className="relative bg-accent text-white rounded-2xl p-6 shadow-card overflow-hidden">
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none" />
 
               {/* Coming soon badge */}
               <div className="absolute -top-px left-1/2 -translate-x-1/2">
-                <span className="bg-amber-500 text-white text-xs font-semibold px-4 py-1.5 rounded-b-xl">
+                <span className="bg-amber-500 text-white text-[10px] font-semibold px-3 py-1 rounded-b-lg">
                   COMING SOON
                 </span>
               </div>
 
               <div className="relative">
-                <div className="mb-8 pt-4">
-                  <h2 className="font-display text-2xl text-white mb-2">Pro</h2>
+                <div className="mb-5 pt-3">
+                  <h2 className="font-display text-xl text-white mb-1">Pro</h2>
                   <p className="text-white/70 text-sm">
                     We watch your profile. You get more calls.
                   </p>
                 </div>
 
-                <div className="flex items-baseline gap-1 mb-8">
-                  <span className="text-5xl font-display text-white">$29</span>
-                  <span className="text-white/60">/month</span>
+                <div className="flex items-baseline gap-1 mb-5">
+                  <span className="text-4xl font-display text-white">$29</span>
+                  <span className="text-white/60 text-sm">/month</span>
                 </div>
 
                 <button
                   disabled
-                  className="block w-full py-4 px-6 text-center bg-white text-accent rounded-full font-medium opacity-60 cursor-not-allowed mb-8"
+                  className="block w-full py-3 px-5 text-center bg-white text-accent rounded-full font-medium opacity-60 cursor-not-allowed mb-6"
                 >
                   Join waitlist
                 </button>
 
-                <ul className="space-y-5">
-                  <li className="flex items-start gap-3">
-                    <CheckIcon className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2.5">
+                    <CheckIcon className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
                     <div>
-                      <span className="font-medium">New review alerts</span>
-                      <p className="text-sm text-white/60 mt-0.5">Get notified the moment a review comes in</p>
+                      <span className="text-sm font-medium">New review alerts</span>
+                      <p className="text-xs text-white/60 mt-0.5">Get notified the moment a review comes in</p>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <CheckIcon className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <CheckIcon className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
                     <div>
-                      <span className="font-medium">Reply in one tap</span>
-                      <p className="text-sm text-white/60 mt-0.5">AI writes a personalized response — just hit send</p>
+                      <span className="text-sm font-medium">Reply in one tap</span>
+                      <p className="text-xs text-white/60 mt-0.5">AI writes a personalized response — just hit send</p>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <CheckIcon className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <CheckIcon className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
                     <div>
-                      <span className="font-medium">Competitor tracking</span>
-                      <p className="text-sm text-white/60 mt-0.5">See how you stack up against 3 local competitors</p>
+                      <span className="text-sm font-medium">Competitor tracking</span>
+                      <p className="text-xs text-white/60 mt-0.5">See how you stack up against 3 local competitors</p>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <CheckIcon className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <CheckIcon className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
                     <div>
-                      <span className="font-medium">Monthly progress report</span>
-                      <p className="text-sm text-white/60 mt-0.5">Simple email: what improved, what to fix next</p>
+                      <span className="text-sm font-medium">Monthly progress report</span>
+                      <p className="text-xs text-white/60 mt-0.5">Simple email: what improved, what to fix next</p>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <CheckIcon className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
+                  <li className="flex items-start gap-2.5">
+                    <CheckIcon className="w-4 h-4 text-green-400 shrink-0 mt-0.5" />
                     <div>
-                      <span className="font-medium">&ldquo;Something broke&rdquo; alerts</span>
-                      <p className="text-sm text-white/60 mt-0.5">We catch problems before they cost you customers</p>
+                      <span className="text-sm font-medium">&ldquo;Something broke&rdquo; alerts</span>
+                      <p className="text-xs text-white/60 mt-0.5">We catch problems before they cost you customers</p>
                     </div>
                   </li>
                 </ul>
 
-                <div className="mt-8 pt-6 border-t border-white/20 text-center">
-                  <p className="text-sm text-white/60">
+                <div className="mt-6 pt-4 border-t border-white/20 text-center">
+                  <p className="text-xs text-white/60">
                     Cancel anytime. No questions asked.
                   </p>
                 </div>
@@ -200,36 +200,35 @@ export default function PricingPage() {
       </section>
 
       {/* Done For You */}
-      <section className="px-5 md:px-8 pb-24">
+      <section className="px-5 md:px-8 pb-20">
         <div className="max-w-3xl mx-auto">
-          <div className="relative bg-surface rounded-3xl p-8 md:p-12 shadow-card overflow-hidden">
+          <div className="relative bg-surface rounded-2xl p-6 md:p-8 shadow-card overflow-hidden">
             {/* Gradient accent */}
             <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent pointer-events-none" />
 
             <div className="relative text-center">
-              <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mx-auto mb-6">
-                <svg className="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
 
-              <h2 className="font-display text-2xl md:text-3xl text-text mb-3">
+              <h2 className="font-display text-xl md:text-2xl text-text mb-2">
                 Don&apos;t want to do it yourself?
               </h2>
-              <p className="text-text-secondary max-w-lg mx-auto mb-8">
+              <p className="text-sm text-text-secondary max-w-md mx-auto mb-5">
                 We&apos;ll optimize your entire Google Business Profile for you — photos,
-                description, categories, the works. You get a fully optimized profile
-                without lifting a finger.
+                description, categories, the works.
               </p>
 
-              <div className="flex items-baseline justify-center gap-2 mb-8">
-                <span className="text-4xl font-display text-text">$499</span>
-                <span className="text-text-muted">one-time</span>
+              <div className="flex items-baseline justify-center gap-2 mb-5">
+                <span className="text-3xl font-display text-text">$499</span>
+                <span className="text-sm text-text-muted">one-time</span>
               </div>
 
               <a
                 href="mailto:hello@getcurbappeal.com?subject=Done For You Service"
-                className="btn-primary inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-medium"
+                className="btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium"
               >
                 Get in touch
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
