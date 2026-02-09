@@ -336,7 +336,7 @@ export function AuditResults({ audit }: AuditResultsProps) {
   return (
     <div className="min-h-screen">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-5 md:px-8 py-4 bg-background/80 backdrop-blur-md border-b border-border-light">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-5 md:px-8 py-4 bg-white/70 backdrop-blur-md border-b border-border-light">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <Logo size="md" linkToHome />
           <button
@@ -363,18 +363,18 @@ export function AuditResults({ audit }: AuditResultsProps) {
       </nav>
 
       {/* Hero - Centered score */}
-      <section className="pt-20 pb-8 md:pt-24 md:pb-10 px-5 md:px-8">
+      <section className="pt-20 pb-6 md:pt-24 md:pb-8 px-5 md:px-8">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-4 md:mb-5">
             <ScoreCircle score={audit.totalScore} label={audit.scoreLabel} />
           </div>
 
-          <h1 className="font-display text-2xl md:text-3xl text-text mb-2">
+          <h1 className="font-display text-2xl md:text-3xl text-text mb-1">
             {audit.businessName}
           </h1>
-          <p className="text-text-muted mb-4">{audit.address}</p>
+          <p className="text-text-muted text-sm mb-3">{audit.address}</p>
 
-          <div className="flex items-center justify-center gap-4 text-sm mb-6">
+          <div className="flex items-center justify-center gap-4 text-sm mb-4">
             {audit.rating > 0 && (
               <div className="flex items-center gap-1">
                 <svg className="w-4 h-4 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
@@ -388,16 +388,16 @@ export function AuditResults({ audit }: AuditResultsProps) {
             <span className="text-text-muted">{audit.category}</span>
           </div>
 
-          <p className="text-lg text-text-secondary max-w-xl mx-auto">
+          <p className="text-base md:text-lg text-text-secondary max-w-xl mx-auto">
             {audit.summary}
           </p>
         </div>
       </section>
 
       {/* Action Items */}
-      <section className="px-5 md:px-8 py-12 md:py-16">
+      <section className="px-5 md:px-8 py-8 md:py-10">
         <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 md:mb-10">
             <p className="text-sm text-text-muted mb-2 tracking-wide">What to fix</p>
             <h2 className="font-display text-2xl md:text-3xl text-text">
               {priorityItems.length > 0
