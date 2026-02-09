@@ -65,7 +65,7 @@ export default function Home() {
           </div>
 
           {/* Audit mockup preview */}
-          <div className="flex-1 flex items-end justify-center pt-8 pb-4">
+          <div className="flex-1 flex items-start justify-center mt-6">
             <div className="relative w-full max-w-[320px]">
               {/* Phone frame */}
               <div className="bg-surface rounded-[2rem] shadow-2xl border border-border-light p-3 pb-0 overflow-hidden">
