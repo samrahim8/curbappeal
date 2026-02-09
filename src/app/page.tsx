@@ -35,8 +35,8 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero - Centered like Craft */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-5 md:px-8 pt-20">
+      {/* Hero */}
+      <section className="px-5 md:px-8 pt-28 md:pt-36 pb-16 md:pb-24">
         <div className="text-center max-w-3xl mx-auto">
           {/* Tagline */}
           <p className="text-sm text-text-muted mb-4 tracking-wide">
