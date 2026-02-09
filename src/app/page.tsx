@@ -35,46 +35,82 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero - Optimized for mobile conversion */}
-      <section className="px-5 md:px-8 pt-20 md:pt-36 pb-8 md:pb-24 min-h-[calc(100dvh-80px)] md:min-h-0 flex flex-col justify-center md:block">
-        <div className="text-center max-w-3xl mx-auto">
-          {/* Tagline - hidden on mobile for focus */}
-          <p className="hidden md:block text-sm text-text-muted mb-4 tracking-wide">
-            Free Google Business Profile Audit
-          </p>
+      {/* Hero - Mobile: full screen takeover, Desktop: standard layout */}
+      <section className="md:px-8 md:pt-36 md:pb-24">
+        {/* Mobile Hero - Full viewport */}
+        <div className="md:hidden min-h-[100dvh] flex flex-col px-6 pt-16 pb-8">
+          <div className="flex-1 flex flex-col justify-center text-center">
+            <h1 className="font-display text-[28px] leading-[1.15] tracking-tight text-text mb-4">
+              What's your curb appeal on Google?
+            </h1>
 
-          {/* Main Headline - tighter on mobile */}
-          <h1 className="font-display text-[32px] md:text-[clamp(36px,8vw,72px)] leading-[1.1] md:leading-[1.05] tracking-tight text-text mb-3 md:mb-6">
-            What's your curb appeal on Google?
-          </h1>
+            <p className="text-base text-text-secondary mb-8">
+              Score your business profile in 10 seconds. Free.
+            </p>
 
-          {/* Subheadline - shorter on mobile */}
-          <p className="text-base md:text-xl text-text-secondary mb-6 md:mb-10 max-w-xl mx-auto">
-            <span className="md:hidden">Score your Google Business Profile in 10 seconds.</span>
-            <span className="hidden md:inline">Your Google Business Profile is the first thing customers see. Score yours in 10 seconds.</span>
-          </p>
-
-          {/* Search Box - prominent */}
-          <div className="max-w-lg mx-auto mb-5 md:mb-8">
-            <BusinessSearch />
+            <div className="mb-6">
+              <BusinessSearch />
+            </div>
           </div>
 
-          {/* Trust Signals - compact on mobile */}
-          <div className="flex items-center justify-center gap-4 md:gap-6 text-xs md:text-sm text-text-muted">
-            <span className="flex items-center gap-1">
-              <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+          {/* Trust signals pinned toward bottom */}
+          <div className="flex items-center justify-center gap-5 text-xs text-text-muted pt-4">
+            <span className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
               Free
             </span>
-            <span className="flex items-center gap-1">
-              <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+            <span className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
               No signup
             </span>
-            <span className="flex items-center gap-1">
-              <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+            <span className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              10 sec
+            </span>
+          </div>
+        </div>
+
+        {/* Desktop Hero - Standard centered layout */}
+        <div className="hidden md:block text-center max-w-3xl mx-auto">
+          <p className="text-sm text-text-muted mb-4 tracking-wide">
+            Free Google Business Profile Audit
+          </p>
+
+          <h1 className="font-display text-[clamp(36px,8vw,72px)] leading-[1.05] tracking-tight text-text mb-6">
+            What's your curb appeal
+            <br />
+            on Google?
+          </h1>
+
+          <p className="text-xl text-text-secondary mb-10 max-w-xl mx-auto">
+            Your Google Business Profile is the first thing customers see. Score yours in 10 seconds.
+          </p>
+
+          <div className="max-w-lg mx-auto mb-8">
+            <BusinessSearch />
+          </div>
+
+          <div className="flex items-center justify-center gap-6 text-sm text-text-muted">
+            <span className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              Free
+            </span>
+            <span className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              No signup
+            </span>
+            <span className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
               10 seconds
