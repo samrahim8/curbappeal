@@ -117,7 +117,7 @@ export interface AuditResult {
   reviewCount: number;
   photoCount: number;
   totalScore: number;
-  scoreLabel: "Invisible" | "At Risk" | "Average" | "Strong" | "Dominant";
+  scoreLabel: "Invisible" | "Needs Work" | "Average" | "Decent" | "Strong" | "Dominant";
   scoreColor: "red" | "orange" | "amber" | "green" | "bright-green";
   breakdown: ScoreBreakdown;
   actionItems: ActionItem[];
@@ -532,18 +532,20 @@ function generateActionItems(breakdown: ScoreBreakdown, place: PlaceDetails): Ac
   return items;
 }
 
-function getScoreLabel(score: number): "Invisible" | "At Risk" | "Average" | "Strong" | "Dominant" {
+function getScoreLabel(score: number): "Invisible" | "Needs Work" | "Average" | "Decent" | "Strong" | "Dominant" {
   if (score < 40) return "Invisible";
-  if (score < 60) return "At Risk";
-  if (score < 75) return "Average";
+  if (score < 60) return "Needs Work";
+  if (score < 70) return "Average";
+  if (score < 80) return "Decent";
   if (score < 90) return "Strong";
   return "Dominant";
 }
 
-function getScoreColor(score: number): "red" | "orange" | "amber" | "green" | "bright-green" {
+function getScoreColor(score: number): "red" | "orange" | "amber" | "lime" | "green" | "bright-green" {
   if (score < 40) return "red";
   if (score < 60) return "orange";
-  if (score < 75) return "amber";
+  if (score < 70) return "amber";
+  if (score < 80) return "lime";
   if (score < 90) return "green";
   return "bright-green";
 }

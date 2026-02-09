@@ -44,8 +44,9 @@ export function ScoreCircle({
 
   const getColor = () => {
     if (score < 40) return { stroke: "#EF4444", bg: "#FEF2F2", text: "#DC2626" };      // Invisible - red
-    if (score < 60) return { stroke: "#F97316", bg: "#FFF7ED", text: "#EA580C" };      // At Risk - orange
-    if (score < 75) return { stroke: "#F59E0B", bg: "#FFFBEB", text: "#D97706" };      // Average - amber
+    if (score < 60) return { stroke: "#F97316", bg: "#FFF7ED", text: "#EA580C" };      // Needs Work - orange
+    if (score < 70) return { stroke: "#F59E0B", bg: "#FFFBEB", text: "#D97706" };      // Average - amber
+    if (score < 80) return { stroke: "#84CC16", bg: "#F7FEE7", text: "#65A30D" };      // Decent - lime
     if (score < 90) return { stroke: "#22C55E", bg: "#F0FDF4", text: "#16A34A" };      // Strong - green
     return { stroke: "#10B981", bg: "#ECFDF5", text: "#059669" };                       // Dominant - bright green
   };
