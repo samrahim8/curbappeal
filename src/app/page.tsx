@@ -45,14 +45,14 @@ export default function Home() {
 
           {/* Main Headline */}
           <h1 className="font-display text-[clamp(36px,8vw,72px)] leading-[1.05] tracking-tight text-text mb-6">
-            Your space to grow
+            What's your curb appeal
             <br />
-            your business
+            on Google?
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-text-secondary mb-10 max-w-xl mx-auto">
-            See exactly what customers find when they search for you on Google. Get your score in 30 seconds.
+            Your Google Business Profile is the first thing customers see. Score yours in 10 seconds.
           </p>
 
           {/* Search Box */}
@@ -78,7 +78,7 @@ export default function Home() {
               <svg className="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
-              30 seconds
+              10 seconds
             </span>
           </div>
         </div>
