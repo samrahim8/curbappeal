@@ -18,7 +18,14 @@ const sourceSerif = Source_Serif_4({
 export const metadata: Metadata = {
   title: "Curb Appeal — Is Google Helping or Hurting Your Business?",
   description:
-    "Get your free Google Business Profile score in 30 seconds. Find out what's broken and how to fix it.",
+    "Get your free Google Business Profile score in 10 seconds. Find out what's broken and how to fix it.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
