@@ -559,11 +559,14 @@ function generateSummary(score: number, actionItems: ActionItem[]): string {
   if (score < 60) {
     return "Your Google presence is at risk. Competitors are likely outranking you in local search.";
   }
-  if (score < 75) {
+  if (score < 70) {
     return "Your Google presence is average. A few updates could help you stand out from competitors.";
   }
+  if (score < 80) {
+    return "Your Google presence is decent. A few tweaks could push you ahead of competitors.";
+  }
   if (score < 90) {
-    return "Your Google presence is strong. A few tweaks could push you to the top of local search.";
+    return "Your Google presence is strong. You're ahead of most local competitors.";
   }
   return "Your Google presence is dominant. You're outperforming most local competitors.";
 }
