@@ -118,7 +118,7 @@ export interface AuditResult {
   photoCount: number;
   totalScore: number;
   scoreLabel: "Invisible" | "Needs Work" | "Average" | "Decent" | "Strong" | "Dominant";
-  scoreColor: "red" | "orange" | "amber" | "green" | "bright-green";
+  scoreColor: "red" | "orange" | "amber" | "lime" | "green" | "bright-green";
   breakdown: ScoreBreakdown;
   actionItems: ActionItem[];
   summary: string;
