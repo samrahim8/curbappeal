@@ -27,16 +27,15 @@ export function BusinessSearch() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const abortControllerRef = useRef<AbortController | null>(null);
-  const debounceRef = useRef<NodeJS.Timeout | null>(null);
   const sessionTokenRef = useRef<string>(generateSessionToken());
 
   const fetchPredictions = useCallback(async (input: string) => {
-    // Cancel any in-flight request
+    // Cancel any in-flight request immediately
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
     }
 
-    if (!input.trim() || input.length < 2) {
+    if (!input.trim()) {
       setPredictions([]);
       setShowDropdown(false);
       return;
@@ -57,7 +56,6 @@ export function BusinessSearch() {
       }
     } catch (error) {
       if (error instanceof Error && error.name === "AbortError") {
-        // Request was cancelled, ignore
         return;
       }
       console.error("Failed to fetch predictions:", error);
@@ -67,20 +65,9 @@ export function BusinessSearch() {
     }
   }, []);
 
+  // Fetch immediately on every keystroke - AbortController handles cancellation
   useEffect(() => {
-    // Tiny debounce (50ms) - imperceptible but reduces API hammering
-    if (debounceRef.current) {
-      clearTimeout(debounceRef.current);
-    }
-    debounceRef.current = setTimeout(() => {
-      fetchPredictions(query);
-    }, 50);
-
-    return () => {
-      if (debounceRef.current) {
-        clearTimeout(debounceRef.current);
-      }
-    };
+    fetchPredictions(query);
   }, [query, fetchPredictions]);
 
   useEffect(() => {
