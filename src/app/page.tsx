@@ -139,7 +139,7 @@ export default function Home() {
       </section>
 
       {/* What we check - Feature section */}
-      <section className="px-5 md:px-8 py-24 bg-surface">
+      <section className="px-5 md:px-8 py-24">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-sm text-text-muted mb-3 tracking-wide">What we analyze</p>
@@ -148,53 +148,45 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="flex gap-4">
-              <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div className="bg-surface rounded-2xl p-6 shadow-card">
+              <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
                 <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </div>
-              <div>
-                <h3 className="font-medium text-text mb-1">Profile Completeness</h3>
-                <p className="text-sm text-text-secondary">Hours, description, categories, attributes, and contact info.</p>
-              </div>
+              <h3 className="font-display text-lg text-text mb-1">Profile</h3>
+              <p className="text-sm text-text-secondary">Hours, description, categories & contact info.</p>
             </div>
 
-            <div className="flex gap-4">
-              <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+            <div className="bg-surface rounded-2xl p-6 shadow-card">
+              <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
                 <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
               </div>
-              <div>
-                <h3 className="font-medium text-text mb-1">Photos</h3>
-                <p className="text-sm text-text-secondary">Quantity, quality, and recency of your business photos.</p>
-              </div>
+              <h3 className="font-display text-lg text-text mb-1">Photos</h3>
+              <p className="text-sm text-text-secondary">Quantity, quality & recency of images.</p>
             </div>
 
-            <div className="flex gap-4">
-              <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+            <div className="bg-surface rounded-2xl p-6 shadow-card">
+              <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
                 <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                 </svg>
               </div>
-              <div>
-                <h3 className="font-medium text-text mb-1">Reviews</h3>
-                <p className="text-sm text-text-secondary">Total count, average rating, and review velocity.</p>
-              </div>
+              <h3 className="font-display text-lg text-text mb-1">Reviews</h3>
+              <p className="text-sm text-text-secondary">Count, rating & review velocity.</p>
             </div>
 
-            <div className="flex gap-4">
-              <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+            <div className="bg-surface rounded-2xl p-6 shadow-card">
+              <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
                 <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
               </div>
-              <div>
-                <h3 className="font-medium text-text mb-1">Review Responses</h3>
-                <p className="text-sm text-text-secondary">How often and how well you respond to customer feedback.</p>
-              </div>
+              <h3 className="font-display text-lg text-text mb-1">Responses</h3>
+              <p className="text-sm text-text-secondary">How you engage with feedback.</p>
             </div>
           </div>
         </div>
