@@ -7,27 +7,36 @@ import { Logo } from "@/components/Logo";
 export default function Home() {
   return (
     <div className="min-h-screen">
-      {/* Navigation - minimal on mobile */}
+      {/* Navigation - pill container on mobile like Craft */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 py-3 md:py-4">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
+        {/* Mobile nav - pill container */}
+        <div className="md:hidden flex items-center justify-between bg-surface/90 backdrop-blur-md rounded-full px-4 py-2.5 shadow-card">
           <Logo size="sm" />
-
-          <div className="flex items-center gap-3 md:gap-2">
+          <button className="p-1">
+            <svg className="w-6 h-6 text-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+        {/* Desktop nav */}
+        <div className="hidden md:flex max-w-6xl mx-auto items-center justify-between">
+          <Logo size="sm" />
+          <div className="flex items-center gap-2">
             <Link
               href="/pricing"
-              className="text-sm text-text-secondary hover:text-text transition-colors"
+              className="px-4 py-2 text-sm text-text-secondary hover:text-text transition-colors"
             >
               Pricing
             </Link>
             <Link
               href="/login"
-              className="hidden md:inline-flex px-4 py-2 text-sm text-text-secondary hover:text-text transition-colors"
+              className="px-4 py-2 text-sm text-text-secondary hover:text-text transition-colors"
             >
               Log in
             </Link>
             <Link
               href="/"
-              className="hidden md:inline-flex glass-button px-5 py-2.5 rounded-full text-sm font-medium text-text"
+              className="glass-button px-5 py-2.5 rounded-full text-sm font-medium text-text"
             >
               Get Your Score
             </Link>
@@ -37,24 +46,27 @@ export default function Home() {
 
       {/* Hero - Mobile: full screen takeover, Desktop: standard layout */}
       <section className="md:px-8 md:pt-36 md:pb-24">
-        {/* Mobile Hero - Full viewport */}
-        <div className="md:hidden min-h-[100dvh] flex flex-col px-6 pt-16 pb-8">
-          <div className="flex-1 flex flex-col justify-center text-center">
-            <h1 className="font-display text-[28px] leading-[1.15] tracking-tight text-text mb-4">
+        {/* Mobile Hero - Positioned in upper area like Craft */}
+        <div className="md:hidden min-h-[100dvh] flex flex-col px-5">
+          {/* Spacer to push content to upper third */}
+          <div className="h-28" />
+
+          {/* Main content */}
+          <div className="text-center">
+            <h1 className="font-display text-[42px] leading-[1.08] tracking-tight text-text mb-5">
               What's your curb appeal on Google?
             </h1>
 
-            <p className="text-base text-text-secondary mb-8">
-              Score your business profile in 10 seconds. Free.
+            <p className="text-lg text-text-secondary mb-10 px-2">
+              Score your business profile in 10 seconds.
             </p>
 
-            <div className="mb-6">
-              <BusinessSearch />
-            </div>
+            <BusinessSearch />
           </div>
 
-          {/* Trust signals pinned toward bottom */}
-          <div className="flex items-center justify-center gap-5 text-xs text-text-muted pt-4">
+          {/* Spacer + trust signals */}
+          <div className="flex-1" />
+          <div className="flex items-center justify-center gap-6 text-sm text-text-muted pb-8">
             <span className="flex items-center gap-1.5">
               <svg className="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
