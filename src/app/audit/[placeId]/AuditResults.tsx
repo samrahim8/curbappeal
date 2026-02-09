@@ -133,35 +133,74 @@ function BreakdownCard({
   icon: React.ReactNode;
 }) {
   const percentage = Math.round((score / maxScore) * 100);
-  const getColor = () => {
-    if (percentage <= 40) return "bg-red-500";
-    if (percentage <= 70) return "bg-amber-500";
-    return "bg-green-500";
+
+  const getConfig = () => {
+    if (percentage <= 40) return {
+      gradient: "from-red-500/10 via-transparent to-transparent",
+      bar: "bg-gradient-to-r from-red-500 to-red-400",
+      ring: "ring-red-500/20",
+      text: "text-red-600",
+      label: "Needs work"
+    };
+    if (percentage <= 70) return {
+      gradient: "from-amber-500/10 via-transparent to-transparent",
+      bar: "bg-gradient-to-r from-amber-500 to-amber-400",
+      ring: "ring-amber-500/20",
+      text: "text-amber-600",
+      label: "Getting there"
+    };
+    return {
+      gradient: "from-green-500/10 via-transparent to-transparent",
+      bar: "bg-gradient-to-r from-green-500 to-emerald-400",
+      ring: "ring-green-500/20",
+      text: "text-green-600",
+      label: "Great"
+    };
   };
 
+  const config = getConfig();
+
   return (
-    <div className="bg-surface rounded-2xl p-6 shadow-card">
-      <div className="flex items-start justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
-            {icon}
-          </div>
-          <div>
-            <h3 className="font-display text-text">{title}</h3>
-            <p className="text-sm text-text-muted">{score}/{maxScore} pts</p>
+    <div className="group relative bg-surface rounded-3xl overflow-hidden shadow-card hover:shadow-lg transition-all duration-300">
+      {/* Gradient background */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${config.gradient} pointer-events-none`} />
+
+      <div className="relative p-6 md:p-8">
+        {/* Header */}
+        <div className="flex items-start justify-between mb-6">
+          <div className="flex items-center gap-4">
+            <div className={`w-12 h-12 rounded-2xl bg-surface ring-1 ${config.ring} flex items-center justify-center text-text-secondary shadow-sm`}>
+              {icon}
+            </div>
+            <div>
+              <h3 className="font-display text-lg text-text">{title}</h3>
+              <p className="text-sm text-text-muted">{score} of {maxScore} points</p>
+            </div>
           </div>
         </div>
-        <span className="text-2xl font-display text-text">{percentage}%</span>
-      </div>
 
-      <div className="h-2 bg-border-light rounded-full overflow-hidden mb-4">
-        <div
-          className={`h-full ${getColor()} rounded-full transition-all duration-500`}
-          style={{ width: `${percentage}%` }}
-        />
-      </div>
+        {/* Score display */}
+        <div className="flex items-end gap-3 mb-4">
+          <span className="text-5xl font-display text-text leading-none">{percentage}</span>
+          <div className="flex flex-col pb-1">
+            <span className="text-xl text-text-muted">%</span>
+          </div>
+          <span className={`ml-auto px-3 py-1 rounded-full text-xs font-semibold ${config.text} bg-surface ring-1 ${config.ring}`}>
+            {config.label}
+          </span>
+        </div>
 
-      <p className="text-sm text-text-secondary">{description}</p>
+        {/* Progress bar */}
+        <div className="h-3 bg-border-light/50 rounded-full overflow-hidden mb-5 ring-1 ring-border-light">
+          <div
+            className={`h-full ${config.bar} rounded-full transition-all duration-700 ease-out`}
+            style={{ width: `${percentage}%` }}
+          />
+        </div>
+
+        {/* Description */}
+        <p className="text-text-secondary text-sm leading-relaxed">{description}</p>
+      </div>
     </div>
   );
 }
@@ -336,27 +375,30 @@ export function AuditResults({ audit }: AuditResultsProps) {
       </section>
 
       {/* Score Breakdown */}
-      <section className="px-5 md:px-8 py-12 md:py-16 bg-surface">
+      <section className="px-5 md:px-8 py-16 md:py-24">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-10">
-            <p className="text-sm text-text-muted mb-2 tracking-wide">Score breakdown</p>
-            <h2 className="font-display text-2xl md:text-3xl text-text">
+          <div className="text-center mb-12 md:mb-16">
+            <p className="text-sm text-text-muted mb-3 tracking-wide uppercase">Score breakdown</p>
+            <h2 className="font-display text-3xl md:text-4xl text-text mb-4">
               How we calculated your score
             </h2>
+            <p className="text-text-secondary max-w-lg mx-auto">
+              Your overall score is based on four key factors that Google uses to rank local businesses.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             <BreakdownCard
               title="Profile Completeness"
               score={audit.breakdown.completeness.score}
               maxScore={audit.breakdown.completeness.maxScore}
               description={
                 audit.breakdown.completeness.percentage === 100
-                  ? "Your profile is complete. Nice work!"
-                  : `${100 - audit.breakdown.completeness.percentage}% of your profile info is missing.`
+                  ? "Your profile is complete with all essential business information."
+                  : `Complete your profile to help customers find the information they need.`
               }
               icon={
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               }
@@ -365,9 +407,9 @@ export function AuditResults({ audit }: AuditResultsProps) {
               title="Photos"
               score={audit.breakdown.photos.score}
               maxScore={audit.breakdown.photos.maxScore}
-              description={audit.breakdown.photos.recommendation}
+              description={`${audit.breakdown.photos.count} photos. Businesses with 25+ photos get 35% more clicks.`}
               icon={
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
               }
@@ -376,9 +418,9 @@ export function AuditResults({ audit }: AuditResultsProps) {
               title="Reviews"
               score={audit.breakdown.reviews.score}
               maxScore={audit.breakdown.reviews.maxScore}
-              description={audit.breakdown.reviews.recommendation}
+              description={`${audit.breakdown.reviews.count} reviews with ${audit.breakdown.reviews.averageRating.toFixed(1)} average. More reviews = higher trust.`}
               icon={
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                 </svg>
               }
@@ -387,9 +429,9 @@ export function AuditResults({ audit }: AuditResultsProps) {
               title="Review Responses"
               score={audit.breakdown.responses.score}
               maxScore={audit.breakdown.responses.maxScore}
-              description={audit.breakdown.responses.recommendation}
+              description="Responding to reviews shows customers you care and boosts rankings."
               icon={
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
               }
