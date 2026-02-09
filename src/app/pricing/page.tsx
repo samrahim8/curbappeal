@@ -69,7 +69,7 @@ export default function PricingPage() {
             without the work
           </h1>
           <p className="text-lg md:text-xl text-text-secondary max-w-xl mx-auto">
-            We watch your profile so you don&apos;t have to. When something needs your attention, we&apos;ll let you know.
+            We watch your profile daily. When something needs fixing, we tell you exactly what to do — and make it one tap to act.
           </p>
         </div>
       </section>
