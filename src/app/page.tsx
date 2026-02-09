@@ -6,7 +6,7 @@ import { Logo } from "@/components/Logo";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-5 md:px-8 py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
