@@ -35,12 +35,18 @@ export default function Home() {
             >
               Log in
             </Link>
-            <Link
-              href="/"
+            <button
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setTimeout(() => {
+                  const input = document.querySelector('input[placeholder="Enter your business name..."]') as HTMLInputElement;
+                  input?.focus();
+                }, 300);
+              }}
               className="glass-button px-5 py-2.5 rounded-full text-sm font-medium text-text"
             >
               Get Your Score
-            </Link>
+            </button>
           </div>
         </div>
       </nav>
