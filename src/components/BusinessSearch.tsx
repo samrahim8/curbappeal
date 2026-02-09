@@ -22,18 +22,27 @@ export function BusinessSearch() {
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   const fetchPredictions = useCallback(async (input: string) => {
-    if (!input.trim() || input.length < 2) {
+    // Cancel any in-flight request
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+
+    if (!input.trim() || input.length < 1) {
       setPredictions([]);
       setShowDropdown(false);
       return;
     }
 
     setIsLoading(true);
+    abortControllerRef.current = new AbortController();
+
     try {
       const response = await fetch(
-        `/api/places/autocomplete?input=${encodeURIComponent(input)}`
+        `/api/places/autocomplete?input=${encodeURIComponent(input)}`,
+        { signal: abortControllerRef.current.signal }
       );
       const data = await response.json();
       if (data.predictions) {
@@ -41,6 +50,10 @@ export function BusinessSearch() {
         setShowDropdown(true);
       }
     } catch (error) {
+      if (error instanceof Error && error.name === "AbortError") {
+        // Request was cancelled, ignore
+        return;
+      }
       console.error("Failed to fetch predictions:", error);
       setPredictions([]);
     } finally {
@@ -50,7 +63,7 @@ export function BusinessSearch() {
 
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => fetchPredictions(query), 300);
+    debounceRef.current = setTimeout(() => fetchPredictions(query), 150);
     return () => {
       if (debounceRef.current) clearTimeout(debounceRef.current);
     };
