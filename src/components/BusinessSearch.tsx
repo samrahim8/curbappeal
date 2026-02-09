@@ -21,7 +21,6 @@ export function BusinessSearch() {
   const [isLoading, setIsLoading] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const debounceRef = useRef<NodeJS.Timeout | null>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
 
   const fetchPredictions = useCallback(async (input: string) => {
@@ -62,11 +61,8 @@ export function BusinessSearch() {
   }, []);
 
   useEffect(() => {
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => fetchPredictions(query), 150);
-    return () => {
-      if (debounceRef.current) clearTimeout(debounceRef.current);
-    };
+    // Fetch immediately - AbortController handles cancellation of stale requests
+    fetchPredictions(query);
   }, [query, fetchPredictions]);
 
   useEffect(() => {
