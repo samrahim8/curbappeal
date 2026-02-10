@@ -12,9 +12,38 @@ interface PlacePrediction {
   };
 }
 
-// Generate a session token for Google Places API (improves response times)
-function generateSessionToken() {
-  return crypto.randomUUID();
+declare global {
+  interface Window {
+    google: typeof google;
+    initGooglePlaces: () => void;
+  }
+}
+
+let googleLoaded = false;
+let googleLoadPromise: Promise<void> | null = null;
+
+function loadGooglePlaces(): Promise<void> {
+  if (googleLoaded && window.google?.maps?.places) {
+    return Promise.resolve();
+  }
+
+  if (googleLoadPromise) {
+    return googleLoadPromise;
+  }
+
+  googleLoadPromise = new Promise((resolve) => {
+    window.initGooglePlaces = () => {
+      googleLoaded = true;
+      resolve();
+    };
+
+    const script = document.createElement("script");
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY}&libraries=places&callback=initGooglePlaces`;
+    script.async = true;
+    document.head.appendChild(script);
+  });
+
+  return googleLoadPromise;
 }
 
 export function BusinessSearch() {
@@ -26,46 +55,68 @@ export function BusinessSearch() {
   const [isLoading, setIsLoading] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const abortControllerRef = useRef<AbortController | null>(null);
-  const sessionTokenRef = useRef<string>(generateSessionToken());
+  const autocompleteServiceRef = useRef<google.maps.places.AutocompleteService | null>(null);
+  const sessionTokenRef = useRef<google.maps.places.AutocompleteSessionToken | null>(null);
 
-  const fetchPredictions = useCallback(async (input: string) => {
-    // Cancel any in-flight request immediately
-    if (abortControllerRef.current) {
-      abortControllerRef.current.abort();
-    }
+  // Load Google Places API on mount
+  useEffect(() => {
+    loadGooglePlaces().then(() => {
+      autocompleteServiceRef.current = new window.google.maps.places.AutocompleteService();
+      sessionTokenRef.current = new window.google.maps.places.AutocompleteSessionToken();
+    });
+  }, []);
 
+  const fetchPredictions = useCallback((input: string) => {
     if (!input.trim()) {
       setPredictions([]);
       setShowDropdown(false);
       return;
     }
 
-    setIsLoading(true);
-    abortControllerRef.current = new AbortController();
-
-    try {
-      const response = await fetch(
-        `/api/places/autocomplete?input=${encodeURIComponent(input)}&sessiontoken=${sessionTokenRef.current}`,
-        { signal: abortControllerRef.current.signal }
-      );
-      const data = await response.json();
-      if (data.predictions) {
-        setPredictions(data.predictions);
-        setShowDropdown(true);
-      }
-    } catch (error) {
-      if (error instanceof Error && error.name === "AbortError") {
-        return;
-      }
-      console.error("Failed to fetch predictions:", error);
-      setPredictions([]);
-    } finally {
-      setIsLoading(false);
+    if (!autocompleteServiceRef.current) {
+      // Fallback to API route if Google hasn't loaded yet
+      setIsLoading(true);
+      fetch(`/api/places/autocomplete?input=${encodeURIComponent(input)}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.predictions) {
+            setPredictions(data.predictions);
+            setShowDropdown(true);
+          }
+        })
+        .finally(() => setIsLoading(false));
+      return;
     }
+
+    setIsLoading(true);
+    autocompleteServiceRef.current.getPlacePredictions(
+      {
+        input,
+        types: ["establishment"],
+        sessionToken: sessionTokenRef.current!,
+      },
+      (results, status) => {
+        setIsLoading(false);
+        if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
+          setPredictions(
+            results.map((r) => ({
+              place_id: r.place_id,
+              description: r.description,
+              structured_formatting: {
+                main_text: r.structured_formatting.main_text,
+                secondary_text: r.structured_formatting.secondary_text,
+              },
+            }))
+          );
+          setShowDropdown(true);
+        } else {
+          setPredictions([]);
+        }
+      }
+    );
   }, []);
 
-  // Fetch immediately on every keystroke - AbortController handles cancellation
+  // Fetch on every keystroke - instant
   useEffect(() => {
     fetchPredictions(query);
   }, [query, fetchPredictions]);
@@ -84,7 +135,9 @@ export function BusinessSearch() {
     setQuery(prediction.structured_formatting.main_text);
     setShowDropdown(false);
     // Reset session token for next search session
-    sessionTokenRef.current = generateSessionToken();
+    if (window.google?.maps?.places) {
+      sessionTokenRef.current = new window.google.maps.places.AutocompleteSessionToken();
+    }
     router.push(`/audit/${prediction.place_id}`);
   };
 
